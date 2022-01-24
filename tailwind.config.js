@@ -5,7 +5,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   plugins: [
-
+    require('daisyui')
   ],
   purge: {
     content: [
