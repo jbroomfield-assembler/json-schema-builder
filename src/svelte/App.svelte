@@ -1,8 +1,9 @@
 <script>
+	import Builder from './Builder.svelte'
 </script>
 
 <main>
-
+	<Builder />
 </main>
 
 <style global lang="postcss">

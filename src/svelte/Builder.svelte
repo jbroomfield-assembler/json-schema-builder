@@ -1,0 +1,14 @@
+<script>
+	import buildSchema from '../buildSchema.js'
+	import Component from './Component.svelte'
+	let schema = buildSchema({type: 'object', root: true})
+	import purgeSchema from '../purgeSchema'
+</script>
+
+{#if schema}
+	<Component bind:schema />
+{/if}
+
+<div><pre>{JSON.stringify(schema, null, '\t')}</pre></div>
+<br>-----<br><br>
+<div><pre>{JSON.stringify(purgeSchema(schema), null, '\t')}</pre></div>
