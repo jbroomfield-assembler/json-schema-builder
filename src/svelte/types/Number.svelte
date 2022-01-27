@@ -86,6 +86,8 @@
       schema.exclusiveMaximum = null
       schema.minimum = null
       schema.exclusiveMinimum = null
+    } else {
+      schema.enum = null
     }
   }
 </script>
