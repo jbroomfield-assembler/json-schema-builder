@@ -10,16 +10,14 @@
       ...schema.enum.slice(0, i),
       ...schema.enum.slice(i + 1)
     ]
-    if (schema.default != null && !schema.enum.include(schema.default)) {
+    if (schema.default != null && !schema.enum.includes(schema.default)) {
       schema.default = null
     }
   }
-  
+
   async function handleAdd() {
     schema.enum = [...schema.enum, ""]
     await tick()
-    console.log('or', optionRefs)
-    console.log('length', optionRefs.length)
     optionRefs[optionRefs.length - 1].focus()
   }
 </script>
@@ -33,7 +31,7 @@
     class="select select-bordered w-full"
     bind:value={schema.default}
   >
-    <option>-----</option>
+    <option value={null}>-----</option>
     {#each schema.enum as option}
       <option value={option}>{option}</option>
     {/each}
