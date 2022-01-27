@@ -1,5 +1,7 @@
 <script>
   import PrimitiveComponent from "../PrimitiveComponent.svelte";
+  import StringInputFields from "./StringInputFields.svelte"
+  import StringSelectFields from "./StringSelectFields.svelte"
   export let schema;
 
   const validMaxLength = schema => {
@@ -22,63 +24,49 @@
     return true
   }
 
+  const validEnum = schema => {
+    if (schema.enum == null) return true
+    if (schema.enum.length === 0) return false
+    if (schema.enum.includes("")) return false
+    return (new Set(schema.enum)).size === schema.enum.length
+  }
+
   const valid = schema => {
     return (
       validMaxLength(schema) &&
       validMinLength(schema) &&
-      validDefault(schema)
+      validDefault(schema) &&
+      validEnum(schema)
     )
+  }
+
+  const handleDefineOptionsChange = event => {
+    if (event.target.checked) {
+      schema.enum ||= ["", "", ""]
+      schema.default = null
+      schema.maxLength = null
+      schema.minLength = null
+    } else {
+      schema.enum = null
+    }
   }
 
 </script>
 
 <PrimitiveComponent bind:schema on:deleteProperty valid={valid(schema)}>
-  
   <div class="form-control">
-    <label for="default" class="label">
-      <span class="label-text">Default</span>
-    </label> 
-    <input id="default" type="text" placeholder="Default" class="input input-bordered" bind:value={schema.default}>
-  </div>
-  
-    <div class="form-control">
-      <label for="max-length" class="label">
-        <span class="label-text">Maximum length</span>
-      </label> 
+    <label class="cursor-pointer label">
+      <span class="label-text">Define options</span> 
       <input
-        id="max-length"
-        type="number"
-        min="1"
-        placeholder="Maximum length"
-        class="input input-bordered"
-        bind:value={schema.maxLength}
+        type="checkbox"
+        class="checkbox"
+        on:change={handleDefineOptionsChange}
       >
-    </div>
-
-  <div class="form-control">
-    <label for="min-length" class="label">
-      <span class="label-text">Minimum length</span>
-    </label> 
-    <input
-      id="min-length"
-      type="number"
-      placeholder="Minimum length"
-      class="input input-bordered"
-      bind:value={schema.minLength}
-    >
+    </label>
   </div>
-
-  <div class="form-control">
-    <label for="min-length" class="label">
-      <span class="label-text">Minimum length</span>
-    </label> 
-    <input
-      id="min-length"
-      type="number"
-      placeholder="Minimum length"
-      class="input input-bordered"
-      bind:value={schema.minLength}
-    >
-  </div>
-
+  {#if (schema.enum == null)}
+    <StringInputFields bind:schema />
+  {:else}
+    <StringSelectFields bind:schema />
+  {/if}
 </PrimitiveComponent>

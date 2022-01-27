@@ -1,0 +1,78 @@
+<script>
+  import { onMount, tick } from 'svelte'
+  export let schema;
+  let optionRefs = []
+
+  onMount(() => optionRefs[0].focus())
+
+  const handleDelete = i => {
+    schema.enum = [
+      ...schema.enum.slice(0, i),
+      ...schema.enum.slice(i + 1)
+    ]
+    if (schema.default != null && !schema.enum.include(schema.default)) {
+      schema.default = null
+    }
+  }
+  
+  async function handleAdd() {
+    schema.enum = [...schema.enum, ""]
+    await tick()
+    console.log('or', optionRefs)
+    console.log('length', optionRefs.length)
+    optionRefs[optionRefs.length - 1].focus()
+  }
+</script>
+
+<div class="form-control">
+	<label for="default" class="label">
+		<span class="label-text">Default</span>
+	</label> 
+  <select
+    id="default"
+    class="select select-bordered w-full"
+    bind:value={schema.default}
+  >
+    <option>-----</option>
+    {#each schema.enum as option}
+      <option value={option}>{option}</option>
+    {/each}
+  </select>
+</div>
+
+
+{#each schema.enum as option, i}
+  <div class="form-control my-2">
+    <div class="flex space-x-2">
+      <input
+        id="option-{i+1}"
+        type="text"
+        placeholder="Option {i+1}"
+        class="input input-bordered w-full"
+        bind:this={optionRefs[i]}
+        bind:value={schema.enum[i]}
+      >
+      <button
+        class="btn btn-square btn-error"
+        on:click={() => handleDelete(i)}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">   
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>                       
+        </svg>
+      </button> 
+    </div>
+  </div>
+{/each}
+
+<div class="form-control my-2">
+  <div>
+    <button
+      class="btn btn-square btn-primary float-right"
+      on:click={handleAdd}
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+    </button> 
+  </div>
+</div>
