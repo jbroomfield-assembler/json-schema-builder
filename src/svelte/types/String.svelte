@@ -2,6 +2,7 @@
   import PrimitiveComponent from "../PrimitiveComponent.svelte";
   import StringInputFields from "./StringInputFields.svelte"
   import StringSelectFields from "./StringSelectFields.svelte"
+  import SelectFields from "./SelectFields.svelte"
   export let schema;
 
   const validMaxLength = schema => {
@@ -67,6 +68,6 @@
   {#if (schema.enum == null)}
     <StringInputFields bind:schema />
   {:else}
-    <StringSelectFields bind:schema />
+    <SelectFields bind:schema inputType="text" />
   {/if}
 </PrimitiveComponent>

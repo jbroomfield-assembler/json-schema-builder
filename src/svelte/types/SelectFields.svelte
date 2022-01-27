@@ -1,6 +1,7 @@
 <script>
   import { onMount, tick } from 'svelte'
   export let schema;
+  export let inputType;
   let optionRefs = []
 
   onMount(() => optionRefs[0].focus())
@@ -42,14 +43,25 @@
 {#each schema.enum as option, i}
   <div class="form-control my-2">
     <div class="flex space-x-2">
-      <input
-        id="option-{i+1}"
-        type="text"
-        placeholder="Option {i+1}"
-        class="input input-bordered w-full"
-        bind:this={optionRefs[i]}
-        bind:value={schema.enum[i]}
-      >
+      {#if inputType === "text"}
+        <input
+          id="option-{i+1}"
+          type="text"
+          placeholder="Option {i+1}"
+          class="input input-bordered w-full"
+          bind:this={optionRefs[i]}
+          bind:value={schema.enum[i]}
+        >
+      {:else if inputType === "number"}
+        <input
+          id="option-{i+1}"
+          type="number"
+          placeholder="Option {i+1}"
+          class="input input-bordered w-full"
+          bind:this={optionRefs[i]}
+          bind:value={schema.enum[i]}
+        >
+      {/if}
       <button
         class="btn btn-square btn-error"
         on:click={() => handleDelete(i)}
