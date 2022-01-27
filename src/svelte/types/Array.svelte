@@ -1,8 +1,8 @@
 <script>
-  import Summary from './Summary.svelte'
-  import Modal from './Modal.svelte'
+  import Summary from '../Summary.svelte'
+  import Modal from '../Modal.svelte'
   export let schema;
-  export let valid = true;
+  let valid = true;
   let modalOpen
   if (schema.new) {
     modalOpen = true
@@ -25,13 +25,6 @@
   on:cancel={handleCancel}
 >
   <h1>{schema.title}</h1>
-  <p>Type: {schema.type}</p>
+  <p>Type: array{schema.items != null ? ` of ${schema.items.type}s` : ''}</p>
   <p>Code: {schema.code}</p>
-  <div class="form-control">
-    <label class="cursor-pointer label">
-      <span class="label-text">Required</span> 
-      <input type="checkbox" class="checkbox" bind:checked={schema.required}>
-    </label>
-  </div>
-  <slot></slot>
 </Modal>

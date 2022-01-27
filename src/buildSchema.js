@@ -15,6 +15,7 @@ const exclusiveKeywords = {
     maxItems: null,
     minItems: null,
     uniqueItems: false,
+    contains: null,
     maxContains: null,
     minContains: null,
   },
@@ -38,6 +39,8 @@ const buildSchema = ({
   code = '',
   def = null,
   root = false,
+  arrayDimension = 0,
+  itemType = '',
 }) => {
 
   if (type === 'object') {
@@ -61,7 +64,26 @@ const buildSchema = ({
         title: '',
         code: '',
         type: '',
+        arrayDimension: 0,
       },
+    }
+  }
+
+  if (type === 'array') {
+    const itemsSchema = buildSchema({
+      type: arrayDimension <= 1 ? itemType : 'array',
+      arrayDimension: arrayDimension - 1,
+      itemType,
+    })
+    return {
+      type,
+      items: itemsSchema,
+      title,
+      code,
+      description,
+      required: false,
+      new: true,
+      ...exclusiveKeywords[type]
     }
   }
   

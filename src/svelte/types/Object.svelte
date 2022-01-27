@@ -3,15 +3,18 @@
   import Modal from '../Modal.svelte';
   import buildSchema from '../../buildSchema';
   export let schema;
-  let newPropertySchema
+  let newPropertySchema, newArraySchema
   const newPropertySchemaValid = (newPropertySchema) => (
-    newPropertySchema && !(Object.values(newPropertySchema.properties).includes(''))
+    newPropertySchema &&
+    !(Object.values(newPropertySchema.properties).includes('')) &&
+    newPropertySchema.itemType !== ''
   )
   let modalOpen = false
   const openModal = () => {
     newPropertySchema = buildSchema({type: 'new-property'})
     modalOpen = true
   }
+
 	const addProperty = () => {
     schema.properties[newPropertySchema.properties.code] = buildSchema(newPropertySchema.properties)
     newPropertySchema = undefined
@@ -39,3 +42,6 @@
 		<Component bind:schema={schema.properties[key]} on:deleteProperty={handleDeleteProperty} />
 	{/each}
 </div>
+
+<div><pre>{JSON.stringify(newPropertySchema, null, '\t')}</pre></div>
+<br>-----<br><br>
