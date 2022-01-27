@@ -5,30 +5,35 @@
   export let schema;
 
   const validMaxLength = schema => {
-    if (schema.maxLength == null) return true
-    if (schema.maxLength < 1) return false
-    return Number.isInteger(schema.maxLength)
+    const max = schema.maxLength
+    if (max == null) return true
+    if (max < 1) return false
+    return Number.isInteger(max)
   }
 
   const validMinLength = schema => {
-    if (schema.minLength == null) return true
-    if (schema.minLength < 0) return false
-    if (schema.maxLength != null && schema.minLength > schema.maxLength) return false
-    return Number.isInteger(schema.maxLength)
+    const min = schema.minLength, max = schema.maxLength
+    if (min == null) return true
+    if (min < 0) return false
+    if (max != null && min > max) return false
+    return Number.isInteger(min)
   }
 
   const validDefault = schema => {
-    if (schema.default == null) return true
-    if (schema.maxLength != null && schema.default.length > schema.maxLength) return false
-    if (schema.minLength != null && schema.default.length < schema.minLength) return false
+    const def = schema.default,
+          max = schema.maxLength, min = schema.minLength
+    if (def == null) return true
+    if (max != null && def.length > max) return false
+    if (min != null && def.length < min) return false
     return true
   }
 
   const validEnum = schema => {
-    if (schema.enum == null) return true
-    if (schema.enum.length === 0) return false
-    if (schema.enum.includes("")) return false
-    return (new Set(schema.enum)).size === schema.enum.length
+    const options = schema.enum
+    if (options == null) return true
+    if (options.length === 0) return false
+    if (options.includes("")) return false
+    return (new Set(options)).size === options.length
   }
 
   const valid = schema => {

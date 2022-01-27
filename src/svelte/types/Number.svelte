@@ -4,65 +4,68 @@
   import SelectFields from "./SelectFields.svelte"
   export let schema;
 
-  const validMultipleOf = schema => {
-    if (schema.multipleOf == null) return true
-    return schema.multipleOf > 0
-  }
+  const validMultipleOf = schema => (
+    schema.multipleOf == null || schema.multipleOf > 0
+  )
 
   const validMaxMin = schema => {
     const max = schema.maximum,
           exMax = schema.exclusiveMaximum,
           min = schema.minimum,
           exMin = schema.exclusiveMinimum,
-          mult = schema.multipleOf,
-          nextMult = x => {
-            if (x % mult === 0) return x + mult
-            return Math.ceil(x / mult) * mult
+          multipleOf = schema.multipleOf,
+          nextMultiple = x => {
+            if (x % multipleOf === 0) return x + multipleOf
+            return Math.ceil(x / multipleOf) * multipleOf
           }
     if (max != null) {
       if (min != null) {
         if (max < min) return false
-        if (mult == null) return true
-        if (max % mult === 0 || min % mult === 0) return true
-        return nextMult(min) < max
+        if (multipleOf == null) return true
+        if (max % multipleOf === 0 || min % multipleOf === 0) return true
+        return nextMultiple(min) < max
       }
       if (exMin != null) {
         if (max <= exMin) return false
-        if (mult == null) return true
-        if (max % mult === 0) return true
-        return nextMult(exMin) < max
+        if (multipleOf == null) return true
+        if (max % multipleOf === 0) return true
+        return nextMultiple(exMin) < max
       }
     } else if (exMax != null) {
       if (min != null) {
         if (exMax <= min) return false
-        if (mult == null) return true
-        if (min % mult == 0) return true
-        return nextMult(min) < exMax
+        if (multipleOf == null) return true
+        if (min % multipleOf == 0) return true
+        return nextMultiple(min) < exMax
       }
       if (exMin != null) {
         if (exMax <= exMin) return false
-        if (mult == null) return true
-        return nextMult(exMin) < exMax
+        if (multipleOf == null) return true
+        return nextMultiple(exMin) < exMax
       }
     }
     return true
   }
 
   const validDefault = schema => {
-    if (schema.default == null) return true
-    if (schema.multipleOf && schema.default % schema.multipleOf !== 0) return false
-    if (schema.maximum && schema.default > schema.maximum) return false
-    if (schema.exclusiveMaximum && schema.default >= schema.exclusiveMaximum) return false
-    if (schema.minimum && schema.default < schema.minimum) return false
-    if (schema.exclusiveMinimum && schema.default <= schema.exclusiveMinimum) return false
+    const def = schema.default, multipleOf = schema.multipleOf,
+          max = schema.maximum, exMax = schema.exclusiveMaximum,
+          min = schema.minimum, exMin = schema.exclusiveMinimum
+    if (def == null) return true
+    if (multipleOf != null && def % multipleOf !== 0) return false
+    if (max != null && def > max) return false
+    if (exMax != null && def >= exMax) return false
+    if (min != null && def < min) return false
+    if (exMin != null && def <= exMin) return false
     return true
   }
 
   const validEnum = schema => {
-    if (schema.enum == null) return true
-    if (schema.enum.length === 0) return false
-    if (schema.enum.includes(null)) return false
-    return (new Set(schema.enum)).size === schema.enum.length
+    const options = schema.enum
+    if (options == null) return true
+    if (options.length === 0) return false
+    if (options.includes(null)) return false
+    return (new Set(options)).size === options.length
   }
 
   const valid = schema => {
