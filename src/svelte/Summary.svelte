@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   export let schema;
+  export let displayType;
   const dispatch = createEventDispatcher();
 
   const edit = () => {
@@ -15,7 +16,7 @@
 </script>
 
 <div>
-  {schema.title} ({schema.type})
+  {schema.title} ({displayType || schema.type})
 </div>
 
 <div>
