@@ -30,6 +30,7 @@
   <input
     id="min-length"
     type="number"
+    min="1"
     placeholder="Minimum length"
     class="input input-bordered"
     bind:value={schema.minLength}
