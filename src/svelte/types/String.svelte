@@ -1,7 +1,6 @@
 <script>
   import PrimitiveComponent from "../PrimitiveComponent.svelte";
   import StringInputFields from "./StringInputFields.svelte"
-  import StringSelectFields from "./StringSelectFields.svelte"
   import SelectFields from "./SelectFields.svelte"
   export let schema;
 
