@@ -75,6 +75,13 @@
   <h1>{schema.title}</h1>
   <p>Type: {displayType}</p>
   <p>Code: {schema.code}</p>
+  <input
+    id="description"
+    type="text"
+    placeholder="Description"
+    class="input input-bordered w-full"
+    bind:value={schema.description}
+  >
   <div class="tabs">
     {#each Array(arrayDimension) as _, i}
       <!-- svelte-ignore a11y-missing-attribute -->

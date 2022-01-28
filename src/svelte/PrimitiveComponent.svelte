@@ -35,7 +35,7 @@
       id="description"
       type="text"
       placeholder="Description"
-      class="input input-bordered"
+      class="input input-bordered w-full"
       bind:value={schema.description}
     >
   </div>
