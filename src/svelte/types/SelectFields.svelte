@@ -55,9 +55,9 @@
     <div class="flex space-x-2">
       {#if inputType === "text"}
         <input
-          id="option-{i+1}"
+          id="option-{i + 1}"
           type="text"
-          placeholder="Option {i+1}"
+          placeholder="Option {i + 1}"
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
@@ -65,9 +65,9 @@
         >
       {:else if inputType === "number"}
         <input
-          id="option-{i+1}"
+          id="option-{i + 1}"
           type="number"
-          placeholder="Option {i+1}"
+          placeholder="Option {i + 1}"
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
