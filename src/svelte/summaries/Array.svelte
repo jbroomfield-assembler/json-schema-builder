@@ -2,6 +2,7 @@
   import { getArrayDimension, getItemSchema } from "../../nestedSchemas"
   import Summary from "../Summary.svelte"
   export let schema;
+  export let arrayItem;
   let arrayDimension = getArrayDimension(schema)
   let itemSchema, itemType, displayType;
   $: {
@@ -11,9 +12,13 @@
   }
 </script>
 
-<p>
-  {schema.title} ({displayType})
-</p>
+{#if arrayItem}
+  <p><strong>array</strong></p>
+{:else}
+  <p>
+    {schema.title} ({displayType})
+  </p>
+{/if}
 
 {#if (schema.description != null && schema.description.length > 0)}
   <p>Description: {schema.description}</p>
@@ -31,4 +36,4 @@
   <p>Items must be unique</p>
 {/if}
 
-<Summary schema={itemSchema} arrayItem={true} />
+<Summary schema={schema.items} arrayItem={true} />
