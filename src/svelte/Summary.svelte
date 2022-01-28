@@ -1,4 +1,6 @@
 <script>
+  import NoSchema from "./summaries/NoSchema.svelte"
+  import StringSummary from "./summaries/String.svelte"
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let displayType;
@@ -13,11 +15,17 @@
       code: schema.code,
     })
   }
+
+  const resolveSummary = schema => {
+    if (!schema || !schema.type) return NoSchema
+    return {
+      'string': StringSummary,
+    }[schema.type]
+  }
+
 </script>
 
-<div>
-  {schema.title} ({displayType || schema.type})
-</div>
+<svelte:component this={resolveSummary(schema)} {schema} />
 
 <div>
   <button class="btn btn-warning" on:click={edit}>Edit</button>
