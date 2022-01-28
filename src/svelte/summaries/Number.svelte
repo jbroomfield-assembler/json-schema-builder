@@ -1,16 +1,23 @@
 <script>
   export let schema;
+  export let arrayItem;
 </script>
 
-<p>
-  {schema.title} (number)
-</p>
+{#if arrayItem}
+  <p><strong>Items: number</strong></p>
+{:else}
+  <p>
+    {schema.title} (number)
+  </p>
+{/if}
 
 {#if (schema.description != null && schema.description.length > 0)}
   <p>Description: {schema.description}</p>
 {/if}
 
-<p>Required: {schema.required}</p>
+{#if !arrayItem}
+  <p>Required: {schema.required}</p>
+{/if}
 
 {#if (schema.default != null)}
   <p>Default: {schema.default}</p>

@@ -36,10 +36,6 @@
   const arrayDimension = getArrayDimension(schema)
   const displayDimension = arrayDimension === 1 ? '' : `${arrayDimension}-dimensional `
   let itemSchema = getItemSchema(schema)
-  // $: {
-  //   schema = setItemSchema(itemSchema)
-  // }
-  console.log('is', itemSchema)
   const itemType = itemSchema && itemSchema.type
   const displayType = `${displayDimension}array of ${itemType}s`
   let activeTab = 0

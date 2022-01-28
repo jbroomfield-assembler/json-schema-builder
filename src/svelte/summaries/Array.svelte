@@ -1,0 +1,28 @@
+<script>
+  import { getArrayDimension, getItemSchema } from "../../nestedSchemas"
+  import Summary from "../Summary.svelte"
+  export let schema;
+  let arrayDimension = getArrayDimension(schema)
+  let itemSchema, itemType, displayType;
+  $: {
+    itemSchema = getItemSchema(schema)
+    itemType = itemSchema?.type
+    displayType = `${arrayDimension > 1 ? `${arrayDimension}-dimensional ` : ''}array of ${itemType}s`
+  }
+</script>
+
+<p>
+  {schema.title} ({displayType})
+</p>
+
+{#if (schema.description != null && schema.description.length > 0)}
+  <p>Description: {schema.description}</p>
+{/if}
+
+<p>Required: {schema.required}</p>
+
+{#if (schema.default != null && schema.default.length > 0)}
+  <p>Default: {schema.default}</p>
+{/if}
+
+<Summary schema={itemSchema} arrayItem={true} />
