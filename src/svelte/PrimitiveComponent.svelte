@@ -11,8 +11,11 @@
   } else {
     modalOpen = false
   }
-  let pristineSchema = JSON.parse(JSON.stringify(schema));
-  const openModal = () => modalOpen = true
+  let pristineSchema;
+  const openModal = () => {
+    pristineSchema = JSON.parse(JSON.stringify(schema))
+    modalOpen = true
+  }
   const handleDone = () => pristineSchema = schema
   const handleCancel = () => schema = pristineSchema
 </script>
