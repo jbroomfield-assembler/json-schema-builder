@@ -27,7 +27,7 @@
 
 <svelte:component this={resolveSummary(schema)} {schema} />
 
-<div>
+<div class="my-2">
   <button class="btn btn-warning" on:click={edit}>Edit</button>
   <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
 </div>
