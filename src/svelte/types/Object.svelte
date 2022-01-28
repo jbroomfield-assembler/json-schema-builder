@@ -3,7 +3,7 @@
   import Modal from '../Modal.svelte';
   import buildSchema from '../../buildSchema';
   export let schema;
-  let newPropertySchema, newArraySchema
+  let newPropertySchema
   const newPropertySchemaValid = (newPropertySchema) => (
     newPropertySchema &&
     !(Object.values(newPropertySchema.properties).includes('')) &&
