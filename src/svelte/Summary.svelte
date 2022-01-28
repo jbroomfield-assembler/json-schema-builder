@@ -2,6 +2,7 @@
   import NoSchema from "./summaries/NoSchema.svelte"
   import StringSummary from "./summaries/String.svelte"
   import NumberSummary from "./summaries/Number.svelte"
+  import BooleanSummary from "./summaries/Boolean.svelte"
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let displayType;
@@ -22,6 +23,7 @@
     return {
       'string': StringSummary,
       'number': NumberSummary,
+      'boolean': BooleanSummary,
     }[schema.type]
   }
 
