@@ -19,10 +19,16 @@
   <p>Description: {schema.description}</p>
 {/if}
 
-<p>Required: {schema.required}</p>
+{#if (schema.minItems != null)}
+  <p>Minimum number of items: {schema.minItems}</p>
+{/if}
 
-{#if (schema.default != null && schema.default.length > 0)}
-  <p>Default: {schema.default}</p>
+{#if (schema.maxItems != null)}
+  <p>Maximum number of items: {schema.maxItems}</p>
+{/if}
+
+{#if (schema.uniqueItems)}
+  <p>Items must be unique</p>
 {/if}
 
 <Summary schema={itemSchema} arrayItem={true} />

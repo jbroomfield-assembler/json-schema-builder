@@ -94,20 +94,6 @@
   </div>
 
   {#if activeTab < arrayDimension}
-    <div class="form-control">
-      <label for="max-items" class="label">
-        <span class="label-text">Maximum number of items</span>
-      </label> 
-      <input
-        id="max-items"
-        type="number"
-        min="1"
-        placeholder="Maximum number of items"
-        class="input input-bordered"
-        value={getValue(schema, activeTab, 'maxItems')}
-        on:change={event => schema = setValue(schema, activeTab, 'maxItems', event.target.value)}
-      >
-    </div>
     
     <div class="form-control">
       <label for="min-items" class="label">
@@ -121,6 +107,21 @@
         class="input input-bordered"
         value={getValue(schema, activeTab, 'minItems')}
         on:change={event => schema = setValue(schema, activeTab, 'minItems', event.target.value)}
+      >
+    </div>
+
+    <div class="form-control">
+      <label for="max-items" class="label">
+        <span class="label-text">Maximum number of items</span>
+      </label> 
+      <input
+        id="max-items"
+        type="number"
+        min="1"
+        placeholder="Maximum number of items"
+        class="input input-bordered"
+        value={getValue(schema, activeTab, 'maxItems')}
+        on:change={event => schema = setValue(schema, activeTab, 'maxItems', event.target.value)}
       >
     </div>
 
