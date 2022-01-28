@@ -1,10 +1,18 @@
 <script>
   import { onMount, tick } from 'svelte'
   export let schema;
+  export let valid;
   export let inputType;
   let optionRefs = []
 
   onMount(() => optionRefs[0].focus())
+
+  const validate = schema => {
+    const options = schema.enum
+    if (options.length === 0) return false
+    if (options.includes(null) || options.includes("")) return false
+    return (new Set(options)).size === options.length
+  }
 
   const handleDelete = i => {
     schema.enum = [
@@ -14,12 +22,14 @@
     if (schema.default != null && !schema.enum.includes(schema.default)) {
       schema.default = null
     }
+    valid = validate(schema)
   }
 
   async function handleAdd() {
-    schema.enum = [...schema.enum, ""]
+    schema.enum = [...schema.enum, inputType === "text" ? "" : null]
     await tick()
     optionRefs[optionRefs.length - 1].focus()
+    valid = validate(schema)
   }
 </script>
 
@@ -51,6 +61,7 @@
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
+          on:change={() => valid = validate(schema)}
         >
       {:else if inputType === "number"}
         <input
@@ -60,6 +71,7 @@
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
+          on:change={() => valid = validate(schema)}
         >
       {/if}
       <button
