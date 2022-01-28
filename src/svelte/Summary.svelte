@@ -1,6 +1,7 @@
 <script>
   import NoSchema from "./summaries/NoSchema.svelte"
   import StringSummary from "./summaries/String.svelte"
+  import NumberSummary from "./summaries/Number.svelte"
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let displayType;
@@ -20,6 +21,7 @@
     if (!schema || !schema.type) return NoSchema
     return {
       'string': StringSummary,
+      'number': NumberSummary,
     }[schema.type]
   }
 
