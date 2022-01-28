@@ -95,36 +95,6 @@
 </div>
 
 <div class="form-control">
-  <label for="max" class="label">
-    <span class="label-text">Maximum</span>
-  </label> 
-  <input
-    id="max"
-    type="number"
-    placeholder="Maximum"
-    class="input input-bordered"
-    bind:value={schema.maximum}
-    on:change={() => schema.exclusiveMaximum = null}
-    on:change={() => valid = validate(schema)}
-  >
-</div>
-
-<div class="form-control">
-  <label for="ex-max" class="label">
-    <span class="label-text">Exclusive maximum</span>
-  </label> 
-  <input
-    id="max"
-    type="number"
-    placeholder="Exclusive maximum"
-    class="input input-bordered"
-    bind:value={schema.exclusiveMaximum}
-    on:change={() => schema.maximum = null}
-    on:change={() => valid = validate(schema)}
-  >
-</div>
-
-<div class="form-control">
   <label for="min" class="label">
     <span class="label-text">Minimum</span>
   </label> 
@@ -150,6 +120,36 @@
     class="input input-bordered"
     bind:value={schema.exclusiveMinimum}
     on:change={() => schema.minimum = null}
+    on:change={() => valid = validate(schema)}
+  >
+</div>
+
+<div class="form-control">
+  <label for="max" class="label">
+    <span class="label-text">Maximum</span>
+  </label> 
+  <input
+    id="max"
+    type="number"
+    placeholder="Maximum"
+    class="input input-bordered"
+    bind:value={schema.maximum}
+    on:change={() => schema.exclusiveMaximum = null}
+    on:change={() => valid = validate(schema)}
+  >
+</div>
+
+<div class="form-control">
+  <label for="ex-max" class="label">
+    <span class="label-text">Exclusive maximum</span>
+  </label> 
+  <input
+    id="max"
+    type="number"
+    placeholder="Exclusive maximum"
+    class="input input-bordered"
+    bind:value={schema.exclusiveMaximum}
+    on:change={() => schema.maximum = null}
     on:change={() => valid = validate(schema)}
   >
 </div>

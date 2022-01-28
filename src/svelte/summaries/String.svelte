@@ -18,12 +18,12 @@
 
 {#if schema.enum == null}
 
-  {#if (schema.maxLength != null)}
-    <p>Maximum length: {schema.maxLength}</p>
-  {/if}
-
   {#if (schema.minLength != null)}
     <p>Minimum length: {schema.minLength}</p>
+  {/if}
+
+  {#if (schema.maxLength != null)}
+    <p>Maximum length: {schema.maxLength}</p>
   {/if}
 
 {:else}

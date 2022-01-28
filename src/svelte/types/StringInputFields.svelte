@@ -47,21 +47,6 @@
 </div>
 
 <div class="form-control">
-  <label for="max-length" class="label">
-    <span class="label-text">Maximum length</span>
-  </label> 
-  <input
-    id="max-length"
-    type="number"
-    min="1"
-    placeholder="Maximum length"
-    class="input input-bordered"
-    bind:value={schema.maxLength}
-    on:change={() => valid = validate(schema)}
-  >
-</div>
-
-<div class="form-control">
   <label for="min-length" class="label">
     <span class="label-text">Minimum length</span>
   </label> 
@@ -72,6 +57,21 @@
     placeholder="Minimum length"
     class="input input-bordered"
     bind:value={schema.minLength}
+    on:change={() => valid = validate(schema)}
+  >
+</div>
+
+<div class="form-control">
+  <label for="max-length" class="label">
+    <span class="label-text">Maximum length</span>
+  </label> 
+  <input
+    id="max-length"
+    type="number"
+    min="1"
+    placeholder="Maximum length"
+    class="input input-bordered"
+    bind:value={schema.maxLength}
     on:change={() => valid = validate(schema)}
   >
 </div>
