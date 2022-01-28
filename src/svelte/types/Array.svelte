@@ -1,6 +1,7 @@
 <script>
   import Summary from '../Summary.svelte'
   import Modal from '../Modal.svelte'
+  import Fields from '../Fields.svelte'
   export let schema;
   let valid = true;
   let modalOpen
@@ -12,18 +13,34 @@
     modalOpen = false
   }
   let pristineSchema = JSON.parse(JSON.stringify(schema));
-  const openModal = () => modalOpen = true
+  const openModal = () => {
+    pristineSchema = JSON.parse(JSON.stringify(schema));
+    modalOpen = true
+  }
   const handleDone = () => pristineSchema = schema
   const handleCancel = () => schema = pristineSchema
   const getArrayDimension = schema => (
     schema.type === 'array' ? 1 + getArrayDimension(schema.items) : 0
   )
-  const getItemType = schema => (
-    schema.type === 'array' ? getItemType(schema.items) : schema.type
+  const getItemSchema = schema => (
+    schema.type === 'array' ? getItemSchema(schema.items) : schema
   )
+  const setItemSchema = (itemSchema, sch = schema) => {
+    if (sch.items.type === 'array') {
+      sch = setItemSchema(itemSchema, sch.items)
+    } else {
+      sch.items = itemSchema
+    }
+    return sch
+  }
   const arrayDimension = getArrayDimension(schema)
   const displayDimension = arrayDimension === 1 ? '' : `${arrayDimension}-dimensional `
-  const itemType = getItemType(schema)
+  let itemSchema = getItemSchema(schema)
+  // $: {
+  //   schema = setItemSchema(itemSchema)
+  // }
+  console.log('is', itemSchema)
+  const itemType = itemSchema && itemSchema.type
   const displayType = `${displayDimension}array of ${itemType}s`
   let activeTab = 0
   const getValue = (schema, depth, key) => {
@@ -40,6 +57,11 @@
     }
     return schema
   }
+
+  const handleItemSchemaChange = event => {
+    schema = setValue(schema, arrayDimension - 1, 'items', event.detail.schema)
+  }
+
 </script>
 
 <Summary {schema} on:deleteProperty on:edit={openModal} {displayType} />
@@ -111,6 +133,6 @@
     </label>
   </div>
   {:else}
-    
+    <Fields bind:schema={itemSchema} bind:valid on:change={handleItemSchemaChange} />
   {/if}
 </Modal>
