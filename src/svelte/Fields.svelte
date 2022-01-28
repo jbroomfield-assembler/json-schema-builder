@@ -1,6 +1,7 @@
 <script>
   import NumberFields from "./types/NumberFields.svelte"
   import StringFields from "./types/StringFields.svelte"
+  import BooleanFields from "./types/BooleanFields.svelte"
   import NoSchema from "./types/NoSchema.svelte"
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher()
@@ -13,6 +14,7 @@
     return {
       'number': NumberFields,
       'string': StringFields,
+      'boolean': BooleanFields,
     }[schema.type]
   }
 
