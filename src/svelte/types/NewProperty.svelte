@@ -26,14 +26,26 @@
 	<label for="new-property-label" class="label">
 		<span class="label-text">Label</span>
 	</label> 
-	<input id="new-property-label" type="text" placeholder="Label" class="input input-bordered" bind:value={schema.properties.title}>
+	<input
+		id="new-property-label"
+		type="text"
+		placeholder="Label"
+		class="input input-bordered"
+		bind:value={schema.properties.title}
+	>
 </div>
 
 <div class="form-control">
 	<label for="new-property-code" class="label">
 		<span class="label-text">Code</span>
 	</label> 
-	<input id="new-property-code" type="text" placeholder="Code" class="input input-bordered" bind:value={schema.properties.code}>
+	<input
+		id="new-property-code"
+		type="text"
+		placeholder="Code"
+		class="input input-bordered"
+		bind:value={schema.properties.code}
+	>
 </div>
 
 <div class="form-control">

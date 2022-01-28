@@ -28,6 +28,18 @@
   <p>Type: {schema.type}</p>
   <p>Code: {schema.code}</p>
   <div class="form-control">
+    <label for="description" class="label">
+      <span class="label-text">Description</span>
+    </label> 
+    <input
+      id="description"
+      type="text"
+      placeholder="Description"
+      class="input input-bordered"
+      bind:value={schema.description}
+    >
+  </div>
+  <div class="form-control">
     <label class="cursor-pointer label">
       <span class="label-text">Required</span> 
       <input type="checkbox" class="checkbox" bind:checked={schema.required}>
