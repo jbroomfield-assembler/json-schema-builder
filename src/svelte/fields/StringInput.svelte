@@ -26,10 +26,17 @@
     return true
   }
 
-  const validate = schema => (
-    validMaxLength(schema) &&
-    validMinLength(schema) &&
-    validDefault(schema))
+  const validate = () => {
+    if (schema.default === "") {
+      schema.default = null
+      schema = schema
+    }
+    valid = (
+      validMaxLength(schema) &&
+      validMinLength(schema) &&
+      validDefault(schema)
+    )
+  }
 </script>
 
 <div class="form-control">
@@ -42,7 +49,7 @@
     placeholder="Default"
     class="input input-bordered"
     bind:value={schema.default}
-    on:change={() => valid = validate(schema)}
+    on:change={() => validate(schema)}
   >
 </div>
 
@@ -53,11 +60,11 @@
   <input
     id="min-length"
     type="number"
-    min="1"
+    min="0"
     placeholder="Minimum length"
     class="input input-bordered"
     bind:value={schema.minLength}
-    on:change={() => valid = validate(schema)}
+    on:change={() => validate(schema)}
   >
 </div>
 
@@ -72,6 +79,6 @@
     placeholder="Maximum length"
     class="input input-bordered"
     bind:value={schema.maxLength}
-    on:change={() => valid = validate(schema)}
+    on:change={() => validate(schema)}
   >
 </div>

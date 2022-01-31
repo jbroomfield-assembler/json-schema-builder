@@ -7,8 +7,6 @@
 	
 	let schema = buildSchema({type: 'object', root: true})
 
-	$: console.log('builder schema', schema)
-
 </script>
 
 {#if schema}
