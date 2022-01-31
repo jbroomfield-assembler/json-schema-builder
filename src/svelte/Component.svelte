@@ -1,6 +1,6 @@
 <script>
 
-	import Summary from "./summaries/Summary.svelte";
+	import Summary from "./Summary.svelte";
 	import SchemaModal from "./SchemaModal.svelte";
 
 	export let schema = {};

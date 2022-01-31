@@ -1,10 +1,10 @@
 <script>
-  import NoSchema from "./NoSchema.svelte";
-  import StringSummary from "./String.svelte";
-  import NumberSummary from "./Number.svelte";
-  import BooleanSummary from "./Boolean.svelte";
-  import ArraySummary from "./Array.svelte";
-  import ObjectSummary from "./Object.svelte";
+  import NoSchema from "./types/NoSchema.svelte";
+  import StringSummary from "./summaries/String.svelte";
+  import NumberSummary from "./summaries/Number.svelte";
+  import BooleanSummary from "./summaries/Boolean.svelte";
+  import ArraySummary from "./summaries/Array.svelte";
+  import ObjectSummary from "./summaries/Object.svelte";
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let arrayItem = false;
@@ -35,9 +35,9 @@
 
 <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
 
-{#if !arrayItem && schema && !schema["$schema"]}
-  <div class="my-2">
-    <button class="btn btn-warning" on:click={edit}>Edit</button>
+<div class="my-2">
+  <button class="btn btn-warning" on:click={edit}>Edit</button>
+  {#if !schema["$schema"]}
     <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
-  </div>
-{/if}
+  {/if}
+</div>
