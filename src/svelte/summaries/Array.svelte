@@ -12,18 +12,6 @@
   }
 </script>
 
-{#if arrayItem}
-  <p><strong>array</strong></p>
-{:else}
-  <p>
-    {schema.title} ({displayType})
-  </p>
-{/if}
-
-{#if (schema.description != null && schema.description.length > 0)}
-  <p>Description: {schema.description}</p>
-{/if}
-
 {#if (schema.minItems != null)}
   <p>Minimum number of items: {schema.minItems}</p>
 {/if}

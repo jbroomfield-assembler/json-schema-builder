@@ -3,18 +3,6 @@
   export let arrayItem;
 </script>
 
-{#if arrayItem}
-  <p><strong>Items: string</strong></p>
-{:else}
-  <p>
-    {schema.title} (string)
-  </p>
-{/if}
-
-{#if (schema.description != null && schema.description.length > 0)}
-  <p>Description: {schema.description}</p>
-{/if}
-
 {#if !arrayItem}
   <p>Required: {schema.required}</p>
 {/if}

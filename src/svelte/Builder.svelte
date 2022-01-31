@@ -5,7 +5,12 @@
 	
 	import Component from './Component.svelte'
 	
-	let schema = buildSchema({type: 'object', root: true})
+	let schema = buildSchema({
+		type: 'object',
+		root: true,
+		title: 'Data Model',
+		code: 'dataModel',
+})
 
 </script>
 

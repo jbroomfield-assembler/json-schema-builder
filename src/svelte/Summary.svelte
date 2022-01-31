@@ -34,12 +34,21 @@
 </script>
 
 <div class="p-10 card bg-base-200 card-bordered border-black">
-  <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
+  <div class="card-body">
 
-  <div class="my-2">
-    <button class="btn btn-warning" on:click={edit}>Edit</button>
-    {#if !schema["$schema"]}
-      <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
+    <h2 class="card-title">{schema.title} ({schema.type})</h2>
+    <p>Code: {schema.code}</p>
+    {#if (schema.description)}
+      <p>Description: {schema.description}</p>
     {/if}
+    
+    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
+    
+    <div class="my-2">
+      <button class="btn btn-warning" on:click={edit}>Edit</button>
+      {#if !schema["$schema"]}
+      <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
+      {/if}
+    </div>
   </div>
 </div>
