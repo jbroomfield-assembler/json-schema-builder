@@ -1,6 +1,6 @@
 <script>
   import Modal from "./Modal.svelte"
-  import Fields from "./fields/Fields.svelte"
+  import Fields from "./Fields.svelte"
   export let schema = {};
   export let open;
   let valid = true;

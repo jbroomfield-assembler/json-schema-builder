@@ -1,7 +1,7 @@
 <script>
   import Component from "../Component.svelte";
   import Modal from "../Modal.svelte";
-  import Fields from "../fields/Fields.svelte";
+  import Fields from "../Fields.svelte";
 
   import buildSchema from "../../buildSchema.js"
 

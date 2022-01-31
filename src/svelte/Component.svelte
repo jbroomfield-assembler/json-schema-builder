@@ -13,6 +13,4 @@
 
 <Summary bind:schema on:edit={openModal} on:deleteProperty />
 
-{#if schema.type !== 'object'}
-	<SchemaModal bind:schema bind:open={modalOpen} />
-{/if}
+<SchemaModal bind:schema bind:open={modalOpen} />

@@ -1,10 +1,10 @@
 <script>
-  import NumberFields from "./Number.svelte"
-  import StringFields from "./String.svelte"
-  import BooleanFields from "./Boolean.svelte"
-  import ArrayFields from "./Array.svelte"
-  import NewPropertyFields from "./NewProperty.svelte"
-  import NoSchema from "../types/NoSchema.svelte"
+  import NumberFields from "./fields/Number.svelte"
+  import StringFields from "./fields/String.svelte"
+  import BooleanFields from "./fields/Boolean.svelte"
+  import ArrayFields from "./fields/Array.svelte"
+  import NewPropertyFields from "./fields/NewProperty.svelte"
+  import NoSchema from "./types/NoSchema.svelte"
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher()
 

@@ -1,6 +1,6 @@
 <script>
 
-  import Fields from "./Fields.svelte"
+  import Fields from "../Fields.svelte"
   import ArrayAttributesFields from "./ArrayAttributes.svelte"
 
   export let schema;
