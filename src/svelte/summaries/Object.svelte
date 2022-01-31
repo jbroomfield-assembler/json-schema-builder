@@ -30,13 +30,12 @@
 
 </script>
 
-<div class="p-10 card bg-base-200">
+
   <button
     class="btn btn-primary w-36" on:click={openModal}>Add Property</button>
 	{#each Object.keys(schema.properties) as key (key)}
 		<Component bind:schema={schema.properties[key]} on:deleteProperty={handleDeleteProperty} />
 	{/each}
-</div>
 
 <Modal
   bind:open={modalOpen}

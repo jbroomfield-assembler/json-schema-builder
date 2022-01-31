@@ -54,7 +54,7 @@ const buildSchema = ({
       },
     }
   }
-  
+
   const schema = {
     '$id': `#/properties/${code}`,
     type,
@@ -64,14 +64,14 @@ const buildSchema = ({
     'default': def,
     examples: [],
     required: false,
-    ...exclusiveKeywords[type]
+    ...JSON.parse(JSON.stringify(exclusiveKeywords[type]))
   }
 
   if (root) {
     schema['$schema'] = 'http://json-schema.org/draft-07/schema'
   } else {
     schema.new = true
-  }  
+  }
   return schema
 
 }
