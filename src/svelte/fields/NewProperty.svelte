@@ -2,12 +2,9 @@
   export let schema;
   export let valid;
 
-  const validate = (schema) => (
-    valid = (
-      !(Object.values(schema.properties).includes('')) &&
-      schema.itemType !== ''
-    )
-  )
+  const validateSchema = () => {
+    valid = !(Object.values(schema.properties).includes(''))
+  }
 </script>
 
 <div class="form-control">
@@ -20,7 +17,7 @@
   placeholder="Label"
   class="input input-bordered"
   bind:value={schema.properties.title}
-  on:change={() => validate(schema)}
+  on:change={validateSchema}
 >
 </div>
 
@@ -34,7 +31,7 @@
   placeholder="Code"
   class="input input-bordered"
   bind:value={schema.properties.code}
-  on:change={() => validate(schema)}
+  on:change={validateSchema}
 >
 </div>
 
@@ -46,6 +43,7 @@
 <select
   class="select select-bordered w-full max-w-xs"
   bind:value={schema.properties.type}
+  on:change={validateSchema}
 >
   <option disabled="disabled" value="">Type</option> 
   <option value="string">String</option> 
@@ -55,3 +53,5 @@
   <option value="object">Object</option>
 </select>
 </div>
+
+<div><pre>{JSON.stringify(schema, null, 4)}</pre></div>
