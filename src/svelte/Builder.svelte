@@ -10,6 +10,7 @@
 		root: true,
 		title: 'Data Model',
 		code: 'dataModel',
+		id: '#/dataModel',
 })
 
 </script>

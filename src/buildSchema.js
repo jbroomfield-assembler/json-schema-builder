@@ -42,6 +42,7 @@ const buildSchema = ({
   code = '',
   def = null,
   root = false,
+  parentId,
 }) => {
 
   if (type === 'new-property') {
@@ -56,7 +57,7 @@ const buildSchema = ({
   }
 
   const schema = {
-    '$id': `#/properties/${code}`,
+    '$id': id,
     type,
     title,
     code,

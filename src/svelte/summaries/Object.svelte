@@ -17,6 +17,7 @@
   }
 
   const addProperty = () => {
+    newPropertySchema.properties.id = `${schema["$id"]}/properties/${newPropertySchema.properties.code}`
     schema.properties[newPropertySchema.properties.code] = buildSchema(newPropertySchema.properties)
     newPropertySchema = null
   }

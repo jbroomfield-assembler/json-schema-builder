@@ -2,7 +2,6 @@
   import { getArrayDimension, getItemSchema } from "../../nestedSchemas"
   import Summary from "../Summary.svelte"
   export let schema;
-  export let arrayItem;
   let arrayDimension = getArrayDimension(schema)
   let itemSchema, itemType, displayType;
   $: {

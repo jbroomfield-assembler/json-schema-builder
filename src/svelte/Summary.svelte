@@ -33,7 +33,7 @@
 
 </script>
 
-<div class="p-10 card bg-base-200 card-bordered border-black">
+<div class="my-2 p-4 card bg-base-200 card-bordered border-black">
   <div class="card-body">
 
     <h2 class="card-title">{schema.title} ({schema.type})</h2>
@@ -41,14 +41,15 @@
     {#if (schema.description)}
       <p>Description: {schema.description}</p>
     {/if}
-    
-    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
-    
+
     <div class="my-2">
       <button class="btn btn-warning" on:click={edit}>Edit</button>
       {#if !schema["$schema"]}
       <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
       {/if}
     </div>
+
+    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
+    
   </div>
 </div>
