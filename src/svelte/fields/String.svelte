@@ -1,6 +1,6 @@
 <script>
-  import StringInputFields from "./StringInputFields.svelte"
-  import SelectFields from "./SelectFields.svelte"
+  import StringInputFields from "./StringInput.svelte"
+  import SelectFields from "./Select.svelte"
 
   export let schema;
   export let valid;
@@ -21,6 +21,13 @@
 
 <div class="form-control">
   <label class="cursor-pointer label">
+    <span class="label-text">Required</span> 
+    <input type="checkbox" class="checkbox" bind:checked={schema.required}>
+  </label>
+</div>
+
+<div class="form-control">
+  <label class="cursor-pointer label">
     <span class="label-text">Define options</span> 
     <input
       type="checkbox"
@@ -29,6 +36,7 @@
     >
   </label>
 </div>
+
 {#if (schema.enum == null)}
   <StringInputFields bind:schema bind:valid />
 {:else}

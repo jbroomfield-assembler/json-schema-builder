@@ -17,6 +17,7 @@
 
 	const addProperty = () => {
     schema.properties[newPropertySchema.properties.code] = buildSchema(newPropertySchema.properties)
+    schema = schema
     newPropertySchema = undefined
 	}
   const handleCancel = () => newPropertySchema = null

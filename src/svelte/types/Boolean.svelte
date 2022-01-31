@@ -1,6 +1,6 @@
 <script>
   import PrimitiveComponent from "../PrimitiveComponent.svelte";
-  import BooleanFields from "./BooleanFields.svelte"
+  import BooleanFields from "../fields/Boolean.svelte"
   export let schema;
 </script>
 

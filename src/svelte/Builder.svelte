@@ -1,8 +1,14 @@
 <script>
+
 	import buildSchema from '../buildSchema.js'
-	import Component from './Component.svelte'
-	let schema = buildSchema({type: 'object', root: true})
 	import purgeSchema from '../purgeSchema'
+	
+	import Component from './Component.svelte'
+	
+	let schema = buildSchema({type: 'object', root: true})
+
+	$: console.log('builder schema', schema)
+
 </script>
 
 {#if schema}

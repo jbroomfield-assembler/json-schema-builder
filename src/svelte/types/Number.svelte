@@ -1,6 +1,6 @@
 <script>
   import PrimitiveComponent from "../PrimitiveComponent.svelte";
-  import NumberFields from "./NumberFields.svelte"
+  import NumberFields from "../fields/Number.svelte"
   export let schema;
   let valid = true;
 </script>
