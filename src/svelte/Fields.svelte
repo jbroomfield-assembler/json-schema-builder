@@ -3,6 +3,7 @@
   import StringFields from "./fields/String.svelte"
   import BooleanFields from "./fields/Boolean.svelte"
   import ArrayFields from "./fields/Array.svelte"
+  import ObjectFields from "./fields/Object.svelte"
   import NewPropertyFields from "./fields/NewProperty.svelte"
   import NoSchema from "./types/NoSchema.svelte"
   import { createEventDispatcher } from "svelte";
@@ -20,6 +21,7 @@
       'string': StringFields,
       'boolean': BooleanFields,
       'array': ArrayFields,
+      'object': ObjectFields,
       'new-property': NewPropertyFields,
     }[schema.type]
   }

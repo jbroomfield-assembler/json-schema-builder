@@ -12,6 +12,7 @@ const exclusiveKeywords = {
     pattern: null,
   },
   array: {
+    items: {},
     maxItems: null,
     minItems: null,
     uniqueItems: false,
@@ -20,6 +21,8 @@ const exclusiveKeywords = {
     minContains: null,
   },
   object: {
+    properties: {},
+    additionalProperties: false,
     maxProperties: null,
     minProperties: null,
     required: [],
@@ -39,23 +42,7 @@ const buildSchema = ({
   code = '',
   def = null,
   root = false,
-  arrayDimension = 0,
-  itemType = '',
 }) => {
-
-  if (type === 'object') {
-    const schema = {
-      '$id': `#/${id}.json`,
-      'type': 'object',
-      'title': title,
-      'examples': [],
-      'properties': {},
-      "additionalProperties": false,
-      ...exclusiveKeywords[type],
-    }
-    if (root) schema['$schema'] = 'http://json-schema.org/draft-07/schema'
-    return schema
-  }
 
   if (type === 'new-property') {
     return {
@@ -64,30 +51,11 @@ const buildSchema = ({
         title: '',
         code: '',
         type: '',
-        arrayDimension: 0,
       },
     }
   }
-
-  if (type === 'array') {
-    const itemsSchema = buildSchema({
-      type: arrayDimension <= 1 ? itemType : 'array',
-      arrayDimension: arrayDimension - 1,
-      itemType,
-    })
-    return {
-      type,
-      items: itemsSchema,
-      title,
-      code,
-      description,
-      required: false,
-      new: true,
-      ...exclusiveKeywords[type]
-    }
-  }
   
-  return {
+  const schema = {
     '$id': `#/properties/${code}`,
     type,
     title,
@@ -96,9 +64,15 @@ const buildSchema = ({
     'default': def,
     examples: [],
     required: false,
-    new: true,
     ...exclusiveKeywords[type]
   }
+
+  if (root) {
+    schema['$schema'] = 'http://json-schema.org/draft-07/schema'
+  } else {
+    schema.new = true
+  }  
+  return schema
 
 }
 
