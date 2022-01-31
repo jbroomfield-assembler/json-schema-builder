@@ -1,84 +1,73 @@
 <script>
 
-  import Fields from "../Fields.svelte"
-  import ArrayAttributesFields from "./ArrayAttributes.svelte"
+  import buildSchema from "../../buildSchema.js"
 
   export let schema;
-  // export let valid;
-  export let rootArray = true;
+  
+  let itemType = null
 
-  const getArrayDimension = schema => (
-    schema.type === 'array' ? 1 + getArrayDimension(schema.items) : 0
-  )
-
-  const getItemSchema = schema => (
-    schema.type === 'array' ? getItemSchema(schema.items) : schema
-  )
-
-  const setItemSchema = (itemSchema, _schema = schema) => {
-    if (_schema.items.type === 'array') {
-      _schema = setItemSchema(itemSchema, _schema.items)
-    } else {
-      _schema.items = itemSchema
-    }
-    return _schema
+  const buildItemSchema = () => {
+    schema.items = buildSchema({
+      type: itemType,
+      id: `${schema["$id"]}/items`
+    })
   }
-
-  const arrayDimension = getArrayDimension(schema)
-  const displayDimension = arrayDimension === 1 ? '' : `${arrayDimension}-dimensional `
-  let itemSchema = getItemSchema(schema)
-  const itemType = itemSchema && itemSchema.type
-  const displayType = `${displayDimension}array of ${itemType}s`
-  let activeTab = 0
-  const getValue = (schema, depth, key) => {
-    if (depth === -1) {
-      return schema
-    }
-    if (depth === 0) {
-      return schema[key]
-    }
-    return getValue(schema.items, depth - 1, key)
-  }
-  const setValue = (schema, depth, key, value) => {
-    if (depth === -1) {
-      schema = value
-    } else if (depth === 0) {
-      schema[key] = value
-    } else {
-      schema.items = setValue(schema.items, depth - 1, key, value)
-    }
-    schema = schema
-    return schema
-  }
-
-  const handleItemSchemaChange = event => {
-    schema = setValue(schema, arrayDimension - 1, 'items', event.detail.schema)
-  } 
-
 </script>
 
+<div class="form-control">
+  <label for="new-property-type" class="label">
+    <span class="label-text">Type</span>
+  </label> 
+  <!-- svelte-ignore a11y-no-onchange -->
+  <select
+    class="select select-bordered w-full max-w-xs"
+    bind:value={itemType}
+    on:change={buildItemSchema}
+  >
+    <option disabled="disabled" value={null}>Type</option> 
+    <option value="string">String</option> 
+    <option value="number">Number</option>
+    <option value="boolean">Boolean</option>
+    <option value="array">Array</option>
+    <option value="object">Object</option>
+  </select>
+</div>
 
-{#if (rootArray)}
-  <div class="tabs">
-    {#each Array(arrayDimension) as _, i}
-      <!-- svelte-ignore a11y-missing-attribute -->
-      <a
-        class="tab tab-bordered"
-        class:tab-active={activeTab === i}
-        on:click={() => activeTab = i}
-      >array</a>
-    {/each} 
-    <!-- svelte-ignore a11y-missing-attribute -->
-    <a
-      class="tab tab-bordered"
-      class:tab-active={activeTab === arrayDimension}
-      on:click={() => activeTab = arrayDimension}
-    >{itemType}</a> 
-  </div>
-  <Fields
-    schema={getValue(schema, activeTab - 1, 'items')}
-    rootArray={false}
-  />
-{:else}
-  <ArrayAttributesFields bind:schema />
-{/if}
+<div class="form-control">
+  <label for="min-items" class="label">
+    <span class="label-text">Minimum number of items</span>
+  </label> 
+  <input
+    id="min-items"
+    type="number"
+    min="0"
+    placeholder="Minimum number of items"
+    class="input input-bordered"
+    bind:value={schema.minItems}
+  >
+</div>
+
+<div class="form-control">
+  <label for="max-items" class="label">
+    <span class="label-text">Maximum number of items</span>
+  </label> 
+  <input
+    id="max-items"
+    type="number"
+    min="1"
+    placeholder="Maximum number of items"
+    class="input input-bordered"
+    bind:value={schema.maxItems}
+  >
+</div>
+
+<div class="form-control">
+  <label class="cursor-pointer label">
+    <span class="label-text">Items must be unique</span> 
+    <input
+      type="checkbox"
+      class="checkbox"
+      bind:checked={schema.minItems}
+    >
+  </label>
+</div>

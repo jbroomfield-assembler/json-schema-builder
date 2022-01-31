@@ -37,7 +37,9 @@
   <div class="card-body">
 
     <h2 class="card-title">{schema.title} ({schema.type})</h2>
-    <p>Code: {schema.code}</p>
+    {#if (schema.code)}
+      <p>Code: {schema.code}</p>
+    {/if}
     {#if (schema.description)}
       <p>Description: {schema.description}</p>
     {/if}
@@ -45,7 +47,7 @@
     <div class="my-2">
       <button class="btn btn-warning" on:click={edit}>Edit</button>
       {#if !schema["$schema"]}
-      <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
+        <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
       {/if}
     </div>
 

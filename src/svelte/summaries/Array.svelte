@@ -23,4 +23,6 @@
   <p>Items must be unique</p>
 {/if}
 
-<Summary schema={schema.items} arrayItem={true} />
+{#if (schema.items.type)}
+  <Summary schema={schema.items} arrayItem={true} />
+{/if}
