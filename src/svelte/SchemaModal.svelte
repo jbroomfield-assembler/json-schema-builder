@@ -4,16 +4,16 @@
   export let schema = {};
   export let open;
   let valid = true;
-  let pristineSchema = {};
+  let pristineSchema = JSON.parse(JSON.stringify(schema));
 
-  $: {
-    if (open) {
-      pristineSchema = JSON.parse(JSON.stringify(schema))
-    }
+  if (schema.new) {
+    delete schema.new
+    schema = schema
+    open = true
   }
 
-  const handleDone = () => pristineSchema = schema
-  const handleCancel = () => schema = pristineSchema
+  const handleDone = () => pristineSchema = JSON.parse(JSON.stringify(schema))
+  const handleCancel = () => schema = JSON.parse(JSON.stringify(pristineSchema))
 
 </script>
 
