@@ -16,7 +16,7 @@
     return Number.isInteger(max)
   }
 
-  const validate = () => {
+  const validateSchema = () => {
     valid = validMin() && validMax()
   }
 
@@ -40,7 +40,7 @@
     placeholder="Minimum number of properties"
     class="input input-bordered"
     bind:value={schema.minProperties}
-    on:change={validate}
+    on:change={validateSchema}
   >
 </div>
 
@@ -55,6 +55,6 @@
     placeholder="Maximum number of properties"
     class="input input-bordered"
     bind:value={schema.maxProperties}
-    on:change={validate}
+    on:change={validateSchema}
   >
 </div>

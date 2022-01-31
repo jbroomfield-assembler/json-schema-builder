@@ -26,7 +26,7 @@
     return true
   }
 
-  const validate = () => {
+  const validateSchema = () => {
     if (schema.default === "") {
       schema.default = null
       schema = schema
@@ -49,7 +49,7 @@
     placeholder="Default"
     class="input input-bordered"
     bind:value={schema.default}
-    on:change={() => validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -64,7 +64,7 @@
     placeholder="Minimum length"
     class="input input-bordered"
     bind:value={schema.minLength}
-    on:change={() => validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -79,6 +79,6 @@
     placeholder="Maximum length"
     class="input input-bordered"
     bind:value={schema.maxLength}
-    on:change={() => validate(schema)}
+    on:change={validateSchema}
   >
 </div>

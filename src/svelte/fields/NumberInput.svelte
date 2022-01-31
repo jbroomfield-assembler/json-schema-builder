@@ -58,11 +58,13 @@
     return true
   }
 
-  const validate = schema => (
-    validMultipleOf(schema) &&
-    validMaxMin(schema) &&
-    validDefault(schema)
-  )
+  const validateSchema = () => {
+    valid = (
+      validMultipleOf(schema) &&
+      validMaxMin(schema) &&
+      validDefault(schema)
+    )
+  }
 </script>
 
 <div class="form-control">
@@ -75,7 +77,7 @@
     placeholder="Default"
     class="input input-bordered"
     bind:value={schema.default}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -90,7 +92,7 @@
     placeholder="Multiple of"
     class="input input-bordered"
     bind:value={schema.multipleOf}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -105,7 +107,7 @@
     class="input input-bordered"
     bind:value={schema.minimum}
     on:change={() => schema.exclusiveMinimum = null}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -120,7 +122,7 @@
     class="input input-bordered"
     bind:value={schema.exclusiveMinimum}
     on:change={() => schema.minimum = null}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -135,7 +137,7 @@
     class="input input-bordered"
     bind:value={schema.maximum}
     on:change={() => schema.exclusiveMaximum = null}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>
 
@@ -150,6 +152,6 @@
     class="input input-bordered"
     bind:value={schema.exclusiveMaximum}
     on:change={() => schema.maximum = null}
-    on:change={() => valid = validate(schema)}
+    on:change={validateSchema}
   >
 </div>

@@ -7,11 +7,15 @@
 
   onMount(() => optionRefs[0].focus())
 
-  const validate = schema => {
+  const validSchema = () => {
     const options = schema.enum
     if (options.length === 0) return false
     if (options.includes(null) || options.includes("")) return false
     return (new Set(options)).size === options.length
+  }
+
+  const validateSchema = () => {
+    valid = validSchema()
   }
 
   const handleDelete = i => {
@@ -22,14 +26,14 @@
     if (schema.default != null && !schema.enum.includes(schema.default)) {
       schema.default = null
     }
-    valid = validate(schema)
+    validateSchema()
   }
 
   async function handleAdd() {
     schema.enum = [...schema.enum, inputType === "text" ? "" : null]
     await tick()
     optionRefs[optionRefs.length - 1].focus()
-    valid = validate(schema)
+    validateSchema()
   }
 </script>
 
@@ -61,7 +65,7 @@
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
-          on:change={() => valid = validate(schema)}
+          on:change={validateSchema}
         >
       {:else if inputType === "number"}
         <input
@@ -71,7 +75,7 @@
           class="input input-bordered w-full"
           bind:this={optionRefs[i]}
           bind:value={schema.enum[i]}
-          on:change={() => valid = validate(schema)}
+          on:change={validateSchema}
         >
       {/if}
       <button
