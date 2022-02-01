@@ -4,6 +4,7 @@
 	import SchemaModal from "./SchemaModal.svelte";
 
 	export let schema = {};
+	export let arrayItem;
 	
 	let modalOpen = false
 
@@ -11,6 +12,6 @@
 
 </script>
 
-<Summary bind:schema on:edit={openModal} on:deleteProperty />
+<Summary bind:schema {arrayItem} on:edit={openModal} on:deleteProperty />
 
 <SchemaModal bind:schema bind:open={modalOpen} />

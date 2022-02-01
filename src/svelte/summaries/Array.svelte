@@ -1,6 +1,6 @@
 <script>
   import { getArrayDimension, getItemSchema } from "../../nestedSchemas"
-  import Summary from "../Summary.svelte"
+  import Component from "../Component.svelte"
   export let schema;
   let arrayDimension = getArrayDimension(schema)
   let itemSchema, itemType, displayType;
@@ -24,5 +24,5 @@
 {/if}
 
 {#if (schema.items.type)}
-  <Summary schema={schema.items} arrayItem={true} />
+  <Component schema={schema.items} arrayItem={true} />
 {/if}

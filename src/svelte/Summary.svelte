@@ -46,7 +46,7 @@
 
     <div class="my-2">
       <button class="btn btn-warning" on:click={edit}>Edit</button>
-      {#if !schema["$schema"]}
+      {#if !schema["$schema"] && !arrayItem}
         <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
       {/if}
     </div>
