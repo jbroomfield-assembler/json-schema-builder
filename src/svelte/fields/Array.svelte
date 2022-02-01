@@ -3,12 +3,10 @@
   import buildSchema from "../../buildSchema.js"
 
   export let schema;
-  
-  let itemType = null
 
-  const buildItemSchema = () => {
+  const buildItemSchema = event => {
     schema.items = buildSchema({
-      type: schema.items.type,
+      type: event.target.value,
       id: `${schema["$id"]}/items`
     })
   }
@@ -21,7 +19,7 @@
   <!-- svelte-ignore a11y-no-onchange -->
   <select
     class="select select-bordered w-full max-w-xs"
-    bind:value={schema.items.type}
+    value={schema?.items?.type}
     on:change={buildItemSchema}
   >
     <option disabled="disabled" value={undefined}>Type</option> 
