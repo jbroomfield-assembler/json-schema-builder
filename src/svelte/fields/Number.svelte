@@ -1,6 +1,6 @@
 <script>
-  import NumberInputFields from "./NumberInput.svelte"
-  import SelectFields from "./Select.svelte"
+  import NumberInputFields from "./helpers/NumberInput.svelte"
+  import SelectFields from "./helpers/Select.svelte"
   
   export let schema;
   export let valid;

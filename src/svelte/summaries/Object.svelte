@@ -28,7 +28,6 @@
     delete schema.properties[event.detail.code]
     schema = schema
   }
-
 </script>
 
 

@@ -4,7 +4,7 @@
 	import SchemaModal from "./SchemaModal.svelte";
 
 	export let schema = {};
-	export let arrayItem;
+	export let arrayItem = false;
 	
 	let modalOpen = false
 

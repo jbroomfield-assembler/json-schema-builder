@@ -1,5 +1,4 @@
 <script>
-  import NoSchema from "./types/NoSchema.svelte";
   import StringSummary from "./summaries/String.svelte";
   import NumberSummary from "./summaries/Number.svelte";
   import BooleanSummary from "./summaries/Boolean.svelte";
@@ -21,7 +20,6 @@
   }
 
   const resolve = schema => {
-    if (!schema || !schema.type) return NoSchema
     return {
       'string': StringSummary,
       'number': NumberSummary,
@@ -37,12 +35,16 @@
   <div class="card-body">
 
     <h2 class="card-title">{schema.title} ({schema.type})</h2>
+
     {#if (schema.code)}
       <p>Code: {schema.code}</p>
     {/if}
+    
     {#if (schema.description)}
       <p>Description: {schema.description}</p>
     {/if}
+
+    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
 
     <div class="my-2">
       <button class="btn btn-warning" on:click={edit}>Edit</button>
@@ -50,8 +52,6 @@
         <button class="btn btn-error" on:click={deleteProperty}>Delete</button>
       {/if}
     </div>
-
-    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
     
   </div>
 </div>
