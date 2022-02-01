@@ -7,7 +7,7 @@
   export let placeholder = label;
 
   let _value = value;
-  let id = `${label && (label.toDownCase() + '-')}number-field`;
+  let id = `${label && (label.toLowerCase() + '-')}number-field`;
 
   $: {
     value = _value || undefined

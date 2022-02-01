@@ -16,7 +16,7 @@
 />
 
 <TextInput
-  label="Label"
+  label="Code"
   bind:value={schema.properties.code}
   on:change={validateSchema}
 />

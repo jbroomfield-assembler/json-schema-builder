@@ -1,30 +1,14 @@
 const exclusiveKeywords = {
   number: {
-    multipleOf: null,
-    maximum: null,
-    exclusiveMaximum: null,
-    minimum: null,
-    exclusiveMinimum: null,
   },
   string: {
-    maxLength: null,
-    minLength: null,
-    pattern: null,
   },
   array: {
     items: {},
-    maxItems: null,
-    minItems: null,
-    uniqueItems: false,
-    contains: null,
-    maxContains: null,
-    minContains: null,
   },
   object: {
     properties: {},
     additionalProperties: false,
-    maxProperties: null,
-    minProperties: null,
     required: [],
     dependentRequired: {},
   },
