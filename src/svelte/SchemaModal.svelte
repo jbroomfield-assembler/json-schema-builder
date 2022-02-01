@@ -5,7 +5,6 @@
   export let open;
   let valid = true;
   let pristineSchema = JSON.parse(JSON.stringify(schema));
-
   
   $: {
     if (schema.new) {

@@ -64,7 +64,6 @@ const buildSchema = ({
     description,
     'default': def,
     examples: [],
-    required: false,
     ...JSON.parse(JSON.stringify(exclusiveKeywords[type]))
   }
 
