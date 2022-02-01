@@ -3,12 +3,33 @@
   import buildSchema from "../../buildSchema.js"
 
   export let schema;
+  export let valid;
+
+  const schemaValid = () => {
+    const min = schema.minItems,
+          max = schema.maxItems;
+    if (min != null) {
+      if (min < 0) return false
+      if (!Number.isInteger(min)) return false
+      if (max != null && max < min) return false
+    }
+    if (max != null) {
+      if (max < 1) return false
+      if (!Number.isInteger(amx)) return false
+    }
+    return true
+  }
+
+  const validate = () => {
+    valid = schemaValid()
+  }
 
   const buildItemSchema = event => {
     schema.items = buildSchema({
       type: event.target.value,
       id: `${schema["$id"]}/items`
     })
+    validate()
   }
 </script>
 
@@ -42,6 +63,7 @@
     placeholder="Minimum number of items"
     class="input input-bordered"
     bind:value={schema.minItems}
+    on:change={validate}
   >
 </div>
 
@@ -56,6 +78,7 @@
     placeholder="Maximum number of items"
     class="input input-bordered"
     bind:value={schema.maxItems}
+    on:change={validate}
   >
 </div>
 
@@ -65,7 +88,7 @@
     <input
       type="checkbox"
       class="checkbox"
-      bind:checked={schema.minItems}
+      bind:checked={schema.uniqueItems}
     >
   </label>
 </div>
