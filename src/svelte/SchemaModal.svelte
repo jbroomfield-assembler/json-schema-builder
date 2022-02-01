@@ -6,6 +6,8 @@
   let valid = true;
   let pristineSchema = JSON.parse(JSON.stringify(schema));
 
+  console.log('schema modal')
+
   if (schema.new) {
     delete schema.new
     schema = schema

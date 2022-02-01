@@ -8,7 +8,7 @@
 
   const buildItemSchema = () => {
     schema.items = buildSchema({
-      type: itemType,
+      type: schema.items.type,
       id: `${schema["$id"]}/items`
     })
   }
@@ -21,10 +21,10 @@
   <!-- svelte-ignore a11y-no-onchange -->
   <select
     class="select select-bordered w-full max-w-xs"
-    bind:value={itemType}
+    bind:value={schema.items.type}
     on:change={buildItemSchema}
   >
-    <option disabled="disabled" value={null}>Type</option> 
+    <option disabled="disabled" value={undefined}>Type</option> 
     <option value="string">String</option> 
     <option value="number">Number</option>
     <option value="boolean">Boolean</option>
