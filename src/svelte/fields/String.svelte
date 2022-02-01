@@ -2,6 +2,8 @@
   import StringInputFields from "./helpers/StringInput.svelte"
   import SelectFields from "./helpers/Select.svelte"
 
+  import Checkbox from "../forms/Checkbox.svelte"
+
   export let schema;
   export let valid;
 
@@ -19,12 +21,10 @@
   }
 </script>
 
-<div class="form-control">
-  <label class="cursor-pointer label">
-    <span class="label-text">Required</span> 
-    <input type="checkbox" class="checkbox" bind:checked={schema.required}>
-  </label>
-</div>
+<Checkbox
+  label="Required"
+  bind:checked={schema.required}
+/>
 
 <div class="form-control">
   <label class="cursor-pointer label">

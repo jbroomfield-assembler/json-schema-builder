@@ -1,4 +1,6 @@
 <script>
+  import TextInput from "../../forms/TextInput.svelte"
+  import NumberInput from "../../forms/NumberInput.svelte"
   export let schema;
   export let valid;
 
@@ -39,46 +41,22 @@
   }
 </script>
 
-<div class="form-control">
-  <label for="default" class="label">
-    <span class="label-text">Default</span>
-  </label> 
-  <input
-    id="default"
-    type="text"
-    placeholder="Default"
-    class="input input-bordered"
-    bind:value={schema.default}
-    on:change={validateSchema}
-  >
-</div>
+<TextInput
+  label="Default"
+  bind:value={schema.default}
+  on:change={validateSchema}
+/>
 
-<div class="form-control">
-  <label for="min-length" class="label">
-    <span class="label-text">Minimum length</span>
-  </label> 
-  <input
-    id="min-length"
-    type="number"
-    min="0"
-    placeholder="Minimum length"
-    class="input input-bordered"
-    bind:value={schema.minLength}
-    on:change={validateSchema}
-  >
-</div>
+<NumberInput
+  label="Minimum length"
+  min=0
+  bind:value={schema.minLength}
+  on:change={validateSchema}
+/>
 
-<div class="form-control">
-  <label for="max-length" class="label">
-    <span class="label-text">Maximum length</span>
-  </label> 
-  <input
-    id="max-length"
-    type="number"
-    min="1"
-    placeholder="Maximum length"
-    class="input input-bordered"
-    bind:value={schema.maxLength}
-    on:change={validateSchema}
-  >
-</div>
+<NumberInput
+  label="Maximum length"
+  min=1
+  bind:value={schema.maxLength}
+  on:change={validateSchema}
+/>

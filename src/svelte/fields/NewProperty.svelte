@@ -1,4 +1,6 @@
 <script>
+  import TextInput from "../forms/TextInput.svelte"
+
   export let schema;
   export let valid;
 
@@ -7,33 +9,17 @@
   }
 </script>
 
-<div class="form-control">
-<label for="new-property-label" class="label">
-  <span class="label-text">Label</span>
-</label> 
-<input
-  id="new-property-label"
-  type="text"
-  placeholder="Label"
-  class="input input-bordered"
+<TextInput
+  label="Label"
   bind:value={schema.properties.title}
   on:change={validateSchema}
->
-</div>
+/>
 
-<div class="form-control">
-<label for="new-property-code" class="label">
-  <span class="label-text">Code</span>
-</label> 
-<input
-  id="new-property-code"
-  type="text"
-  placeholder="Code"
-  class="input input-bordered"
+<TextInput
+  label="Label"
   bind:value={schema.properties.code}
   on:change={validateSchema}
->
-</div>
+/>
 
 <div class="form-control">
   <label for="new-property-type" class="label">

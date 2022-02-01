@@ -5,11 +5,11 @@
   export let label;
   export let value;
   export let placeholder = label;
-  export let min;
-  export let max;
+  export let min = null;
+  export let max = null;
 
   let _value = value;
-  let id = `${label && (label.toDownCase() + '-')}number-field`;
+  let id = `${label && (label.toLowerCase() + '-')}number-field`;
 
   $: {
     value = _value == null ? undefined : _value

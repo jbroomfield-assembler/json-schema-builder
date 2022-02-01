@@ -1,6 +1,8 @@
 <script>
 
   import buildSchema from "../../buildSchema.js"
+  import NumberInput from "../forms/NumberInput.svelte"
+  import Checkbox from "../forms/Checkbox.svelte"
 
   export let schema;
   export let valid;
@@ -52,43 +54,21 @@
   </select>
 </div>
 
-<div class="form-control">
-  <label for="min-items" class="label">
-    <span class="label-text">Minimum number of items</span>
-  </label> 
-  <input
-    id="min-items"
-    type="number"
-    min="0"
-    placeholder="Minimum number of items"
-    class="input input-bordered"
-    bind:value={schema.minItems}
-    on:change={validate}
-  >
-</div>
+<NumberInput
+  label="Minimum number of items"
+  bind:value={schema.minItems}
+  min=0
+  on:change={validate}
+/>
 
-<div class="form-control">
-  <label for="max-items" class="label">
-    <span class="label-text">Maximum number of items</span>
-  </label> 
-  <input
-    id="max-items"
-    type="number"
-    min="1"
-    placeholder="Maximum number of items"
-    class="input input-bordered"
-    bind:value={schema.maxItems}
-    on:change={validate}
-  >
-</div>
+<NumberInput
+  label="Maximum number of items"
+  bind:value={schema.maxItems}
+  min=1
+  on:change={validate}
+/>
 
-<div class="form-control">
-  <label class="cursor-pointer label">
-    <span class="label-text">Items must be unique</span> 
-    <input
-      type="checkbox"
-      class="checkbox"
-      bind:checked={schema.uniqueItems}
-    >
-  </label>
-</div>
+<Checkbox
+  label="Items must be unique"
+  bind:checked={schema.uniqueItems}
+/>
