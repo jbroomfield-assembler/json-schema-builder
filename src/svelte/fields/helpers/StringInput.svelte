@@ -60,3 +60,9 @@
   bind:value={schema.maxLength}
   on:change={validateSchema}
 />
+
+<TextInput
+  label="Pattern"
+  bind:value={schema.pattern}
+  on:change={validateSchema}
+/>
