@@ -17,7 +17,7 @@
     }
     if (max != null) {
       if (max < 1) return false
-      if (!Number.isInteger(amx)) return false
+      if (!Number.isInteger(max)) return false
     }
     return true
   }
