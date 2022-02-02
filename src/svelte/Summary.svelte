@@ -49,7 +49,7 @@
       <p>Required.</p>
     {/if}
 
-    <svelte:component this={resolve(schema)} bind:schema {arrayItem} />
+    <svelte:component this={resolve(schema)} bind:schema />
 
     <div class="my-2">
       <button class="btn btn-warning" on:click={edit}>Edit</button>
