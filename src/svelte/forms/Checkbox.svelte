@@ -3,7 +3,7 @@
   const dispatch = createEventDispatcher()
 
   export let label;
-  export let checked;
+  export let checked = false;
 </script>
 
 <div class="form-control">
