@@ -22,11 +22,6 @@
   }
 </script>
 
-<Checkbox
-  label="Required"
-  bind:checked={schema.required}
-/>
-
 <div class="form-control">
   <label class="cursor-pointer label">
     <span class="label-text">Define options</span> 

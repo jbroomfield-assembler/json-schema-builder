@@ -11,11 +11,6 @@
   }
 </script>
 
-<Checkbox
-  label="Required"
-  bind:checked={schema.required}
-/>
-
 <div class="form-control">
   <label for="default" class="label">
     <span class="label-text">Default</span>

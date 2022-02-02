@@ -24,27 +24,39 @@
 
   const handleCancel = () => newPropertySchema = null
 
+  const handleSetRequired = (key, required) => {
+    const index = schema.required.indexOf(key)
+    if (required) {
+      if (index < 0) {
+        schema.required = [
+          ...schema.required,
+          key,
+        ]
+      }
+    } else if (index >= 0) {
+      schema.required = [
+        ...schema.required.slice(0, index),
+        ...schema.required.slice(index + 1),
+      ]
+    }
+    schema = schema;
+  }
+
   const handleDeleteProperty = event => {
     delete schema.properties[event.detail.code]
     schema = schema
   }
 </script>
 
-<p>Required properties:</p>
-{#if schema.required.length === 0}
-<p><em>None</em></p>
-{:else}
-<ul>
-  {#each schema.required as property}
-  <li>{property}</li>
-  {/each}
-</ul>
-{/if}
-
 <button class="btn btn-primary w-36" on:click={openModal}>Add Property</button>
 
 {#each Object.keys(schema.properties) as key (key)}
-  <Component bind:schema={schema.properties[key]} on:deleteProperty={handleDeleteProperty} />
+  <Component
+    bind:schema={schema.properties[key]}
+    required={schema.required.includes(key)}
+    on:setRequired={event => handleSetRequired(key, event.detail.required)}
+    on:deleteProperty={handleDeleteProperty}
+  />
 {/each}
 
 <Modal

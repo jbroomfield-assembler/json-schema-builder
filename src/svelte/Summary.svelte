@@ -7,6 +7,7 @@
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let arrayItem = false;
+  export let required = null;
   const dispatch = createEventDispatcher();
 
   const edit = () => {
@@ -42,6 +43,10 @@
     
     {#if (schema.description)}
       <p>Description: {schema.description}</p>
+    {/if}
+
+    {#if (required)}
+      <p>Required.</p>
     {/if}
 
     <svelte:component this={resolve(schema)} bind:schema {arrayItem} />

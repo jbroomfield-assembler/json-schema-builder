@@ -25,11 +25,6 @@
 </script>
 
 <Checkbox
-  label="Required"
-  bind:checked={schema.required}
-/>
-
-<Checkbox
   label="Define options"
   on:change={handleDefineOptionsChange}
 />

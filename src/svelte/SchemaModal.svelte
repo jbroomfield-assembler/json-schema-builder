@@ -1,8 +1,12 @@
 <script>
   import Modal from "./Modal.svelte"
   import Fields from "./Fields.svelte"
+
+  import Checkbox from "./forms/Checkbox.svelte"
+
   export let schema = {};
   export let open;
+  export let required;
   let valid = true;
   let pristineSchema;
   
@@ -42,5 +46,13 @@
       bind:value={schema.description}
     >
   </div>
+
+  {#if required != null}
+    <Checkbox
+      label="Required"
+      bind:checked={required}
+    />
+  {/if}
+
   <Fields bind:schema bind:valid />
 </Modal>
