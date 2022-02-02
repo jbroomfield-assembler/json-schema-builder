@@ -13,7 +13,6 @@ const exclusiveKeywords = {
     dependentRequired: {},
   },
   boolean: {
-    default: false
   }
 }
 

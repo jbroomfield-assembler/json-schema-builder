@@ -2,4 +2,6 @@
   export let schema;
 </script>
 
-<p>Default: {schema.default}</p>
+{#if schema.default != undefined}
+  <p>Default: {schema.default}</p>
+{/if}

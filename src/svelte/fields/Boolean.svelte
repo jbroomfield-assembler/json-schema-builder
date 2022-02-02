@@ -1,27 +1,26 @@
 <script>
   import Checkbox from "../forms/Checkbox.svelte"
+  import Select from "../forms/Select.svelte"
 
   export let schema;
 
+  const defaultOptions = [
+    {value: undefined, label: "-----"},
+    {value: false, label: "False"},
+    {value: true, label: "True"},
+  ]
+
   const handleChange = event => {
     schema.default = {
+      undefined: undefined,
       true: true,
       false: false,
-    }[event.target.value]
+    }[event.detail.value]
   }
 </script>
 
-<div class="form-control">
-  <label for="default" class="label">
-    <span class="label-text">Default</span>
-  </label> 
-  <!-- svelte-ignore a11y-no-onchange -->
-  <select
-    id="default"
-    class="select select-bordered w-full max-w-xs"
-    on:change={handleChange}
-  >
-    <option value="false">False</option>
-    <option value="true">True</option> 
-  </select>
-</div>
+<Select
+  label="Default"
+  options={defaultOptions}
+  on:change={handleChange}
+/>
