@@ -1,5 +1,30 @@
 <script>
+  import Select from "../forms/Select.svelte"
+  
   export let schema;
+
+  let options = [];
+
+  const setOptions = () => {
+    options = [];
+    if (schema.enum != null) {
+      if (!schema.default) {
+        options.push({disabled: "disabled", selected: "selected", label: "Options"})
+      }
+      schema.enum.forEach(option => {
+        const newOption = {label: option}
+        if (option === schema.default) {
+          newOption.selected = "selected"
+        }
+        options.push(newOption)
+      })
+    }
+  }
+
+  $: schema && setOptions()
+
+    
+  
 </script>
 
 {#if (schema.default != null)}
@@ -26,19 +51,9 @@
 
 {:else}
 
-  <div class="form-control">
-    <label for="options" class="label">
-      <span class="label-text">Options</span>
-    </label> 
-    <select
-      id="default"
-      class="select select-bordered"
-    >
-      <option disabled="disabled" selected="selected">Options</option> 
-      {#each schema.enum as option}
-        <option>{option}</option>
-      {/each}
-    </select>
-  </div>
+  <Select
+    label="Options"
+    {options}
+  />
 
 {/if}
