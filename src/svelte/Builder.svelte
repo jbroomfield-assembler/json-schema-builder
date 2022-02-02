@@ -1,7 +1,6 @@
 <script>
 
 	import newSchema from '../newSchema.js'
-	import purgeSchema from '../purgeSchema'
 	
 	import Component from './Component.svelte'
 	

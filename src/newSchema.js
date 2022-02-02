@@ -23,6 +23,7 @@ const newSchema = ({
   title = '',
   code = '',
   parentCode,
+  format,
 }) => {
 
   if (type === 'data-model') {
@@ -34,6 +35,15 @@ const newSchema = ({
         title,
         code,
       }),
+    })
+  }
+
+  if (['date', 'time', 'date-time', 'email'].includes(type)) {
+    return newSchema({
+      type: 'string',
+      title,
+      code,
+      format: type,
     })
   }
 
@@ -52,6 +62,7 @@ const newSchema = ({
     type,
     title,
     code,
+    format,
     new: true,
     ...JSON.parse(JSON.stringify(exclusiveKeywords[type]))
   }
