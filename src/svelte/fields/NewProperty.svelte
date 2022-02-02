@@ -33,6 +33,8 @@
   ]
 </script>
 
+<h1>New Property</h1>
+
 <TextInput
   label="Label"
   bind:value={schema.properties.title}
