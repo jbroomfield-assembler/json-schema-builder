@@ -8,7 +8,6 @@
   export let valid;
 
   const handleDefineOptionsChange = event => {
-    console.log('change', event.target.checked)
     if (event.target.checked) {
       schema.enum ||= ["", "", "",]
       delete schema.default

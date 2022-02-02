@@ -40,15 +40,18 @@
     if (schema.default != null && !schema.enum.includes(schema.default)) {
       schema.default = undefined
     }
-    validateSchema()
+    schema = schema
   }
 
   async function handleAdd() {
     schema.enum = [...schema.enum, inputType === "text" ? "" : null]
     await tick()
     optionRefs[optionRefs.length - 1].focus()
-    validateSchema()
+    schema = schema
   }
+
+  $: schema && validateSchema()
+
 </script>
 
 <FormSelect
@@ -69,7 +72,6 @@
         fieldOnly={true}
         bind:this={optionRefs[i]}
         bind:value={schema.enum[i]}
-        on:change={validateSchema}
       />
       <button
         class="btn btn-square btn-error"

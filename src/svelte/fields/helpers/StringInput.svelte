@@ -30,7 +30,7 @@
 
   const validateSchema = () => {
     if (schema.default === "") {
-      schema.default = null
+      schema.default = undefined
       schema = schema
     }
     valid = (
@@ -39,30 +39,29 @@
       validDefault(schema)
     )
   }
+
+  $: schema && validateSchema()
+
 </script>
 
 <TextInput
   label="Default"
   bind:value={schema.default}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Minimum length"
   min=0
   bind:value={schema.minLength}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Maximum length"
   min=1
   bind:value={schema.maxLength}
-  on:change={validateSchema}
 />
 
 <TextInput
   label="Pattern"
   bind:value={schema.pattern}
-  on:change={validateSchema}
 />

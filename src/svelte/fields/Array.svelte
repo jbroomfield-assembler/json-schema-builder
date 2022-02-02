@@ -34,7 +34,7 @@
     return true
   }
 
-  const validate = () => {
+  const validateSchema = () => {
     valid = schemaValid()
   }
 
@@ -45,6 +45,9 @@
     })
     validate()
   }
+
+  $: schema && validateSchema()
+
 </script>
 
 <Select
@@ -58,14 +61,12 @@
   label="Minimum number of items"
   bind:value={schema.minItems}
   min=0
-  on:change={validate}
 />
 
 <NumberInput
   label="Maximum number of items"
   bind:value={schema.maxItems}
   min=1
-  on:change={validate}
 />
 
 <Checkbox

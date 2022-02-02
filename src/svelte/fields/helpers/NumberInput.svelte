@@ -66,45 +66,42 @@
       validDefault(schema)
     )
   }
+
+  $: schema && validateSchema()
+
 </script>
 
 <NumberInput
   label="Default"
   bind:value={schema.default}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Multiples of"
   min=1
   bind:value={schema.multipleOf}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Minimum"
   bind:value={schema.minimum}
   on:change={() => schema.exlusiveMinimum = undefined}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Exclusive minimum"
   bind:value={schema.exclusiveMinimum}
   on:change={() => schema.minimum = undefined}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Maximum"
   bind:value={schema.maximum}
   on:change={() => schema.exlusiveMaximum = undefined}
-  on:change={validateSchema}
 />
 
 <NumberInput
   label="Exclusive maximum"
   bind:value={schema.exclusiveMaximum}
   on:change={() => schema.maximum = undefined}
-  on:change={validateSchema}
 />
