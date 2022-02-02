@@ -19,5 +19,3 @@
 {/if}
 
 <div><pre>{JSON.stringify(schema, null, '\t')}</pre></div>
-<br>-----<br><br>
-<div><pre>{JSON.stringify(purgeSchema(schema), null, '\t')}</pre></div>
