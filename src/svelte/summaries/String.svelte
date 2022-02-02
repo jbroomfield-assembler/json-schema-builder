@@ -2,12 +2,7 @@
   import Select from "../forms/Select.svelte"
 
   export let schema;
-  export let arrayItem;
 </script>
-
-{#if !arrayItem}
-  <p>Required: {schema.required}</p>
-{/if}
 
 {#if (schema.default != null && schema.default.length > 0)}
   <p>Default: {schema.default}</p>

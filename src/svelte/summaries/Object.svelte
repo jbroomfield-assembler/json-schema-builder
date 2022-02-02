@@ -30,12 +30,22 @@
   }
 </script>
 
+<p>Required properties:</p>
+{#if schema.required.length === 0}
+<p><em>None</em></p>
+{:else}
+<ul>
+  {#each schema.required as property}
+  <li>{property}</li>
+  {/each}
+</ul>
+{/if}
 
-  <button
-    class="btn btn-primary w-36" on:click={openModal}>Add Property</button>
-	{#each Object.keys(schema.properties) as key (key)}
-		<Component bind:schema={schema.properties[key]} on:deleteProperty={handleDeleteProperty} />
-	{/each}
+<button class="btn btn-primary w-36" on:click={openModal}>Add Property</button>
+
+{#each Object.keys(schema.properties) as key (key)}
+  <Component bind:schema={schema.properties[key]} on:deleteProperty={handleDeleteProperty} />
+{/each}
 
 <Modal
   bind:open={modalOpen}
