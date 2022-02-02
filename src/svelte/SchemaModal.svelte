@@ -5,9 +5,12 @@
   export let open;
   export let tabs = null;
   let valid = true;
-  let pristineSchema = JSON.parse(JSON.stringify(schema));
+  let pristineSchema;
   let activeTab = 0;
   
+  const setPristineSchema = () => pristineSchema = JSON.parse(JSON.stringify(schema))
+  const revertSchema = () => schema = JSON.parse(JSON.stringify(pristineSchema))
+
   $: {
     if (schema.new) {
       delete schema.new
@@ -16,16 +19,15 @@
     }
   }
 
-  const handleDone = () => pristineSchema = JSON.parse(JSON.stringify(schema))
-  const handleCancel = () => schema = JSON.parse(JSON.stringify(pristineSchema))
+  $: if (open) setPristineSchema()
 
 </script>
 
 <Modal
   bind:open
   {valid}
-  on:done={handleDone}
-  on:cancel={handleCancel}
+  on:done={setPristineSchema}
+  on:cancel={revertSchema}
 >
   <h1>{schema.title}</h1>
   <p>Type: {schema.type}</p>
@@ -42,17 +44,19 @@
       {/each}
     </div>
   {/if}
-  <div class="form-control">
-    <label for="description" class="label">
-      <span class="label-text">Description</span>
-    </label> 
-    <input
-      id="description"
-      type="text"
-      placeholder="Description"
-      class="input input-bordered w-full"
-      bind:value={schema.description}
-    >
-  </div>
+  {#if activeTab === 0}
+    <div class="form-control">
+      <label for="description" class="label">
+        <span class="label-text">Description</span>
+      </label> 
+      <input
+        id="description"
+        type="text"
+        placeholder="Description"
+        class="input input-bordered w-full"
+        bind:value={schema.description}
+      >
+    </div>
+  {/if}
   <Fields bind:schema bind:valid bind:activeTab/>
 </Modal>

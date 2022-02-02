@@ -11,6 +11,7 @@
 
   export let schema;
   export let valid;
+  export let activeTab;
 
   const resolve = schema => {
     return {
@@ -27,5 +28,5 @@
 </script>
 
 {#if (schema?.type)}
-  <svelte:component this={resolve(schema)} bind:schema bind:valid />
+  <svelte:component this={resolve(schema)} bind:schema bind:valid bind:activeTab />
 {/if}

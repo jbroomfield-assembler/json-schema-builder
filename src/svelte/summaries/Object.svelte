@@ -12,7 +12,7 @@
   let modalOpen = false;
   
   const openModal = () => {
-    newPropertySchema = buildSchema({type: 'new-property'})
+    newPropertySchema = newSchema({type: 'new-property'})
     modalOpen = true
   }
 
