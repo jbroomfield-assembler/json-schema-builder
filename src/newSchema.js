@@ -52,7 +52,6 @@ const newSchema = ({
     type,
     title,
     code,
-    examples: [],
     new: true,
     ...JSON.parse(JSON.stringify(exclusiveKeywords[type]))
   }
