@@ -12,7 +12,7 @@
 
 	let tabs = null;
 	if (schema.type === "object") {
-		tabs = ["Basic", "Required"]
+		tabs = ["Basic", "Required", "Dependent Required"]
 	}
 
 </script>
