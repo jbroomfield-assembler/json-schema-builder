@@ -42,7 +42,7 @@
     <select
       class="select select-bordered w-full max-w-xs"
       bind:value
-      on:change={() => dispatch("change")}
+      on:change={event => dispatch("change", {value: event.target.value})}
     >
       {#each options as option}
         {#if typeof option === "object"}

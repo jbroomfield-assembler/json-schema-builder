@@ -3,9 +3,21 @@
   import newSchema from "../../newSchema.js"
   import NumberInput from "../forms/NumberInput.svelte"
   import Checkbox from "../forms/Checkbox.svelte"
+  import Select from "../forms/Select.svelte"
 
   export let schema;
   export let valid;
+
+  const itemTypeOptions = [
+    {disabled: "disabled", label: "Item type"},
+    "Text",
+    "Number",
+    "Boolean",
+    "Array",
+    "Object",
+    "Date",
+    "Email",
+  ]
 
   const schemaValid = () => {
     const min = schema.minItems,
@@ -28,31 +40,19 @@
 
   const newItemSchema = event => {
     schema.items = newSchema({
-      type: event.target.value,
+      type: event.detail.value,
       id: `${schema["$id"]}/items`
     })
     validate()
   }
 </script>
 
-<div class="form-control">
-  <label for="new-property-type" class="label">
-    <span class="label-text">Type</span>
-  </label> 
-  <!-- svelte-ignore a11y-no-onchange -->
-  <select
-    class="select select-bordered w-full max-w-xs"
-    value={schema?.items?.type}
-    on:change={newItemSchema}
-  >
-    <option disabled="disabled" value={undefined}>Type</option> 
-    <option value="string">String</option> 
-    <option value="number">Number</option>
-    <option value="boolean">Boolean</option>
-    <option value="array">Array</option>
-    <option value="object">Object</option>
-  </select>
-</div>
+<Select
+  label="Items type"
+  options={itemTypeOptions}
+  value={schema?.items?.type}
+  on:change={newItemSchema}
+/>
 
 <NumberInput
   label="Minimum number of items"
