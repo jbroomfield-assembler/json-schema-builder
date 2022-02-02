@@ -18,16 +18,24 @@ const exclusiveKeywords = {
 }
 
 
-const buildSchema = ({
+const newSchema = ({
   type,
   title = '',
-  description = '',
-  id = '',
   code = '',
-  def = null,
-  root = false,
-  parentId,
+  parentCode,
 }) => {
+
+  if (type === 'data-model') {
+    return ({
+      $schema: "http://json-schema.org/draft-07/schema",
+      $id: `/schemas/${parentCode}/${code}`,
+      ...newSchema({
+        type: 'object',
+        title,
+        code,
+      }),
+    })
+  }
 
   if (type === 'new-property') {
     return {
@@ -40,24 +48,15 @@ const buildSchema = ({
     }
   }
 
-  const schema = {
-    '$id': id,
+  return {
     type,
     title,
     code,
-    description,
-    'default': def,
     examples: [],
+    new: true,
     ...JSON.parse(JSON.stringify(exclusiveKeywords[type]))
   }
 
-  if (root) {
-    schema['$schema'] = 'http://json-schema.org/draft-07/schema'
-  } else {
-    schema.new = true
-  }
-  return schema
-
 }
 
-export default buildSchema
+export default newSchema

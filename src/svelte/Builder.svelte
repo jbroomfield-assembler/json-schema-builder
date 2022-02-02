@@ -1,16 +1,15 @@
 <script>
 
-	import buildSchema from '../buildSchema.js'
+	import newSchema from '../newSchema.js'
 	import purgeSchema from '../purgeSchema'
 	
 	import Component from './Component.svelte'
 	
-	let schema = buildSchema({
-		type: 'object',
-		root: true,
-		title: 'Data Model',
-		code: 'dataModel',
-		id: '#/dataModel',
+	let schema = newSchema({
+		type: 'data-model',
+		title: 'Info',
+		code: 'info',
+		parentCode: 'playingGroup',
 })
 
 </script>

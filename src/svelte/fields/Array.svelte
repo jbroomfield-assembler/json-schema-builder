@@ -1,6 +1,6 @@
 <script>
 
-  import buildSchema from "../../buildSchema.js"
+  import newSchema from "../../newSchema.js"
   import NumberInput from "../forms/NumberInput.svelte"
   import Checkbox from "../forms/Checkbox.svelte"
 
@@ -26,8 +26,8 @@
     valid = schemaValid()
   }
 
-  const buildItemSchema = event => {
-    schema.items = buildSchema({
+  const newItemSchema = event => {
+    schema.items = newSchema({
       type: event.target.value,
       id: `${schema["$id"]}/items`
     })
@@ -43,7 +43,7 @@
   <select
     class="select select-bordered w-full max-w-xs"
     value={schema?.items?.type}
-    on:change={buildItemSchema}
+    on:change={newItemSchema}
   >
     <option disabled="disabled" value={undefined}>Type</option> 
     <option value="string">String</option> 
