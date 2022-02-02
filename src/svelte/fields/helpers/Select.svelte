@@ -1,9 +1,21 @@
 <script>
-  import { onMount, tick } from 'svelte'
+  import { onMount, tick } from "svelte"
+
+  import FormSelect from "../../forms/Select.svelte"
+
   export let schema;
   export let valid;
   export let inputType;
   let optionRefs = []
+
+  let defaultOptions
+  
+  $: defaultOptions = [
+    {value: null, label: "-----"},
+    ...schema.enum
+    .filter(option => option && option.length > 0)
+    .map(option => ({value: option, label: option,}))
+  ]
 
   onMount(() => optionRefs[0].focus())
 
@@ -37,22 +49,11 @@
   }
 </script>
 
-<div class="form-control">
-	<label for="default" class="label">
-		<span class="label-text">Default</span>
-	</label> 
-  <select
-    id="default"
-    class="select select-bordered w-full"
-    bind:value={schema.default}
-  >
-    <option value={null}>-----</option>
-    {#each schema.enum as option}
-      <option value={option}>{option}</option>
-    {/each}
-  </select>
-</div>
-
+<FormSelect
+  label="Default"
+  options={defaultOptions}
+  bind:value={schema.default}
+/>
 
 {#each schema.enum as option, i}
   <div class="form-control my-2">

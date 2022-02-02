@@ -1,4 +1,6 @@
 <script>
+  import Select from "../forms/Select.svelte"
+
   export let schema;
   export let arrayItem;
 </script>
@@ -23,19 +25,12 @@
 
 {:else}
 
-  <div class="form-control">
-    <label for="options" class="label">
-      <span class="label-text">Options</span>
-    </label> 
-    <select
-      id="default"
-      class="select select-bordered"
-    >
-      <option disabled="disabled" selected="selected">Options</option> 
-      {#each schema.enum as option}
-        <option>{option}</option>
-      {/each}
-    </select>
-  </div>
+  <Select
+    label="Options"
+    options={[
+      {disabled: "disabled", selected: "selected", label: "Options"},
+      ...schema.enum.map(option => ({label: option}))
+    ]}
+  />
 
 {/if}
