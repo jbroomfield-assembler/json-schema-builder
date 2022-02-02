@@ -58,8 +58,6 @@
 
   $: schema && validateSchema()
 
-  $: console.log(optionRefs)
-
 </script>
 
 <FormSelect
