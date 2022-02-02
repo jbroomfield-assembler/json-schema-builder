@@ -23,7 +23,6 @@
 
   const validSchema = () => {
     const options = schema.enum
-    console.log(options, 'options')
     if (options.length === 0) return false
     if (options.includes(null) || options.includes("") || options.includes(undefined)) return false
     return (new Set(options)).size === options.length
@@ -47,11 +46,19 @@
   async function handleAdd() {
     schema.enum = [...schema.enum, inputType === "text" ? "" : null]
     await tick()
-    optionRefs[optionRefs.length - 1].focus()
+    for (let i = 1; i <= optionRefs.length; i++) {
+      const optionRef = optionRefs[optionRefs.length - i]
+      if (optionRef) {
+        optionRef.focus()
+        break;
+      }
+    }
     schema = schema
   }
 
   $: schema && validateSchema()
+
+  $: console.log(optionRefs)
 
 </script>
 
