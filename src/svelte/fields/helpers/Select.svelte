@@ -23,8 +23,9 @@
 
   const validSchema = () => {
     const options = schema.enum
+    console.log(options, 'options')
     if (options.length === 0) return false
-    if (options.includes(null) || options.includes("")) return false
+    if (options.includes(null) || options.includes("") || options.includes(undefined)) return false
     return (new Set(options)).size === options.length
   }
 
