@@ -30,12 +30,19 @@
     }[schema.type]
   }
 
+  let displayType
+  if (schema.type === 'string') {
+    displayType = schema.format || 'text'
+  } else {
+    displayType = schema.type
+  }
+
 </script>
 
 <div class="my-2 p-4 card bg-base-200 card-bordered border-black">
   <div class="card-body">
 
-    <h2 class="card-title">{schema.title} ({schema.type})</h2>
+    <h2 class="card-title">{schema.title} ({displayType})</h2>
 
     {#if (schema.code)}
       <p>Code: {schema.code}</p>
