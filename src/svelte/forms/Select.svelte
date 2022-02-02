@@ -2,9 +2,9 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  export let label;
-  export let value;
-  export let options;
+  export let label = null;
+  export let value = null;
+  export let options = [];
   let id = `${label && (label.toLowerCase() + '-')}select`;
 
 </script>

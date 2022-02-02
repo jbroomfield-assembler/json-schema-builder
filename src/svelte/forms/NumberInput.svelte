@@ -2,8 +2,8 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  export let label;
-  export let value;
+  export let label = null;
+  export let value = undefined;
   export let placeholder = label;
   export let min = null;
   export let max = null;
@@ -11,6 +11,9 @@
 
   let _value = value;
   let id = `${label && (label.toLowerCase() + '-')}number-field`;
+  let input;
+
+  export const focus = () => input.focus()
 
   $: {
     value = _value == null ? undefined : _value
@@ -20,12 +23,13 @@
 
 {#if fieldOnly}
   <input
+    bind:this={input}
     id="{id}"
     type="number"
     min="{min}"
     max="{max}"
     placeholder="{placeholder}"
-    class="input input-bordered"
+    class="input input-bordered w-full"
     bind:value={_value}
   >
 {:else}
@@ -36,12 +40,13 @@
       </label>
     {/if}
     <input
+      bind:this={input}
       id="{id}"
       type="number"
       min="{min}"
       max="{max}"
       placeholder="{placeholder}"
-      class="input input-bordered"
+      class="input input-bordered w-full"
       bind:value={_value}
     >
   </div>

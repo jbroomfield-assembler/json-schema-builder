@@ -1,4 +1,7 @@
 <script>
+  import { createEventDispatcher } from "svelte"
+  const dispatch = createEventDispatcher()
+
   export let label;
   export let checked;
 </script>
@@ -8,6 +11,6 @@
     {#if (label)}
       <span class="label-text">{label}</span>
     {/if}
-    <input type="checkbox" class="checkbox" bind:checked>
+    <input type="checkbox" class="checkbox" bind:checked on:change={() => dispatch("change")}>
   </label>
 </div>

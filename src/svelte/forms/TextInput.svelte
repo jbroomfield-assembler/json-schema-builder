@@ -2,8 +2,8 @@
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 
-  export let label;
-  export let value;
+  export let label = null;
+  export let value = undefined;
   export let placeholder = label;
   export let fieldOnly = false;
 

@@ -8,11 +8,12 @@
   export let valid;
 
   const handleDefineOptionsChange = event => {
+    console.log('change', event.target.checked)
     if (event.target.checked) {
-      schema.enum ||= ["", "", ""]
-      schema.default = null
-      schema.maxLength = null
-      schema.minLength = null
+      schema.enum ||= ["", "", "",]
+      delete schema.default
+      delete schema.maxLength
+      delete schema.minLength
       valid = false
     } else {
       schema.enum = null
