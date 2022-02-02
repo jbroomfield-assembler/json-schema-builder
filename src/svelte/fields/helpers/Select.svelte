@@ -2,6 +2,8 @@
   import { onMount, tick } from "svelte"
 
   import FormSelect from "../../forms/Select.svelte"
+  import TextInput from "../../forms/TextInput.svelte"
+  import NumberInput from "../../forms/NumberInput.svelte"
 
   export let schema;
   export let valid;
@@ -58,27 +60,17 @@
 {#each schema.enum as option, i}
   <div class="form-control my-2">
     <div class="flex space-x-2">
-      {#if inputType === "text"}
-        <input
-          id="option-{i + 1}"
-          type="text"
-          placeholder="Option {i + 1}"
-          class="input input-bordered w-full"
-          bind:this={optionRefs[i]}
-          bind:value={schema.enum[i]}
-          on:change={validateSchema}
-        >
-      {:else if inputType === "number"}
-        <input
-          id="option-{i + 1}"
-          type="number"
-          placeholder="Option {i + 1}"
-          class="input input-bordered w-full"
-          bind:this={optionRefs[i]}
-          bind:value={schema.enum[i]}
-          on:change={validateSchema}
-        >
-      {/if}
+      <svelte:component
+        this={{
+          "text": TextInput,
+          "number": NumberInput
+        }[inputType]}
+        placeholder="Option {i + 1}"
+        fieldOnly={true}
+        bind:this={optionRefs[i]}
+        bind:value={schema.enum[i]}
+        on:change={validateSchema}
+      />
       <button
         class="btn btn-square btn-error"
         on:click={() => handleDelete(i)}

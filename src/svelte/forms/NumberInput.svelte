@@ -7,6 +7,7 @@
   export let placeholder = label;
   export let min = null;
   export let max = null;
+  export let fieldOnly = false;
 
   let _value = value;
   let id = `${label && (label.toLowerCase() + '-')}number-field`;
@@ -17,12 +18,7 @@
   }
 </script>
 
-<div class="form-control">
-  {#if (label)}
-    <label for="{id}" class="label">
-      <span class="label-text">{label}</span>
-    </label>
-  {/if}
+{#if fieldOnly}
   <input
     id="{id}"
     type="number"
@@ -32,4 +28,21 @@
     class="input input-bordered"
     bind:value={_value}
   >
-</div>
+{:else}
+  <div class="form-control">
+    {#if (label)}
+      <label for="{id}" class="label">
+        <span class="label-text">{label}</span>
+      </label>
+    {/if}
+    <input
+      id="{id}"
+      type="number"
+      min="{min}"
+      max="{max}"
+      placeholder="{placeholder}"
+      class="input input-bordered"
+      bind:value={_value}
+    >
+  </div>
+{/if}
