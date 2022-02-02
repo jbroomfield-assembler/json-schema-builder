@@ -4,9 +4,18 @@
   export let schema;
   export let valid;
 
-  const validateSchema = () => {
-    valid = !(Object.values(schema.properties).includes(''))
+  const schemaValid = () => {
+    for (const property of Object.values(schema.properties)) {
+      if (!(property && property.length > 0)) return false
+    }
+    return true
   }
+
+  const validateSchema = () => {
+    valid = schemaValid()
+  }
+
+  $: schema && validateSchema()
 
   const typeOptions = [
     {
@@ -27,18 +36,15 @@
 <TextInput
   label="Label"
   bind:value={schema.properties.title}
-  on:change={validateSchema}
 />
 
 <TextInput
   label="Code"
   bind:value={schema.properties.code}
-  on:change={validateSchema}
 />
 
 <Select
   label="type"
   options={typeOptions}
   bind:value={schema.properties.type}
-  on:change={validateSchema}
 />
