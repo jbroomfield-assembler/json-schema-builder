@@ -48,7 +48,7 @@
 </script>
 
 <Select
-  label="Items type"
+  label="Item type"
   options={itemTypeOptions}
   value={schema?.items?.type}
   on:change={newItemSchema}

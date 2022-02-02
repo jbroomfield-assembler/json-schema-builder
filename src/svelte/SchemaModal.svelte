@@ -13,6 +13,13 @@
   const setPristineSchema = () => pristineSchema = JSON.parse(JSON.stringify(schema))
   const revertSchema = () => schema = JSON.parse(JSON.stringify(pristineSchema))
 
+  let displayType
+  if (schema.type === 'string') {
+    displayType = schema.format || 'text'
+  } else {
+    displayType = schema.type
+  }
+
   $: {
     if (schema.new) {
       delete schema.new
@@ -32,7 +39,7 @@
   on:cancel={revertSchema}
 >
   <h1>{schema.title}</h1>
-  <p>Type: {schema.type}</p>
+  <p>Type: {displayType}</p>
   <p>Code: {schema.code}</p>
   <div class="form-control">
     <label for="description" class="label">
