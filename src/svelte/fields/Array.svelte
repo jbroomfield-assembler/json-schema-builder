@@ -43,7 +43,7 @@
       type: event.detail.value,
       id: `${schema["$id"]}/items`
     })
-    validate()
+    validateSchema()
   }
 
   $: schema && validateSchema()
