@@ -13,9 +13,9 @@
   let defaultOptions
   
   $: defaultOptions = [
-    {value: null, label: "-----"},
+    {value: undefined, label: "-----"},
     ...schema.enum
-    .filter(option => option && option.length > 0)
+    .filter(option => option)
     .map(option => ({value: option, label: option,}))
   ]
 
@@ -38,7 +38,7 @@
       ...schema.enum.slice(i + 1)
     ]
     if (schema.default != null && !schema.enum.includes(schema.default)) {
-      schema.default = null
+      schema.default = undefined
     }
     validateSchema()
   }

@@ -8,12 +8,12 @@
   export let valid;
   
   const handleDefineOptionsChange = event => {
+    delete schema.default
     if (schema.enum) {
       delete schema.enum
       valid = true
     } else {
       schema.enum ||= [null, null, null]
-      delete schema.default
       delete schema.multipleOf
       delete schema.maximum
       delete schema.exclusiveMaximum
