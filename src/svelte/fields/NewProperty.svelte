@@ -14,11 +14,13 @@
       value: "",
       label: "Type",
     },
-    "String",
+    "Text",
     "Number",
     "Boolean",
     "Array",
     "Object",
+    "Date",
+    "Email",
   ]
 </script>
 

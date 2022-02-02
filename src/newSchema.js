@@ -58,6 +58,8 @@ const newSchema = ({
     }
   }
 
+  if (type === 'text') type = 'string'
+
   return {
     type,
     title,
