@@ -4,11 +4,15 @@
 	
 	import Component from './component.svelte'
 	
+	export let title = 'Info';
+	export let code = 'info';
+	export let parentCode = 'playingGroup';
+
 	let schema = newSchema({
 		type: 'data-model',
-		title: 'Info',
-		code: 'info',
-		parentCode: 'playingGroup',
+		title,
+		code,
+		parentCode,
 })
 
 </script>

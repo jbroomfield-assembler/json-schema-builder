@@ -1,9 +1,9 @@
 <script>
-	import Builder from './builder.svelte'
+	import SchemaBuilder from './schema_builder.svelte'
 </script>
 
 <main>
-	<Builder />
+	<SchemaBuilder />
 </main>
 
 <style global lang="postcss">
