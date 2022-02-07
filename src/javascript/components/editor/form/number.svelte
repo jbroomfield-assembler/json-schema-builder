@@ -1,53 +1,48 @@
 <script>
-  import { createEventDispatcher } from "svelte";
-  const dispatch = createEventDispatcher();
+  import { createEventDispatcher } from 'svelte'
 
-  export let label = null;
-  export let value = undefined;
-  export let placeholder = label;
-  export let min = null;
-  export let max = null;
-  export let fieldOnly = false;
+  export let label
+  export let resource = {}
+  export let key
+  export let errors = {}
+  export let placeholder
+  export let autocomplete = 'on'
+  export let inputClasses = ''
+  export let step = 1
+  export let value = resource[key]
 
-  let _value = value;
-  let id = `${label && (label.toLowerCase() + '-')}number-field`;
-  let input;
+  $: resource[key] = value
 
-  export const focus = () => input.focus()
+  const dispatch = createEventDispatcher()
 
-  $: {
-    value = _value == null ? undefined : _value
-    dispatch("change")
+  function handleChange() {
+    dispatch('change', resource)
+  }
+
+  export function setResource(r) {
+    resource = r
   }
 </script>
 
-{#if fieldOnly}
-  <input
-    bind:this={input}
-    id="{id}"
-    type="number"
-    min="{min}"
-    max="{max}"
-    placeholder="{placeholder}"
-    class="input input-bordered w-full"
-    bind:value={_value}
-  >
-{:else}
-  <div class="form-control">
-    {#if (label)}
-      <label for="{id}" class="label">
-        <span class="label-text">{label}</span>
-      </label>
-    {/if}
-    <input
-      bind:this={input}
-      id="{id}"
-      type="number"
-      min="{min}"
-      max="{max}"
-      placeholder="{placeholder}"
-      class="input input-bordered w-full"
-      bind:value={_value}
-    >
-  </div>
-{/if}
+
+<div class="tw-form-control">
+  {#if label}
+  <label class="tw-label" for='{key}'>
+    <span class="tw-label-text">{label}</span>
+  </label>
+  {/if}
+  <input bind:value="{value}" 
+         on:change={handleChange}
+         type="number" 
+         name='{key}'
+         {step}
+         {autocomplete}
+         {placeholder}
+         class:tw-input-error="{errors[key]}"
+         class="tw-input tw-input-bordered {inputClasses}">
+  {#if errors[key]}
+    <label class="tw-label" for='{key}'>
+      <span class="tw-label-text-alt">{errors[key]}</span>
+    </label>
+  {/if}
+</div>

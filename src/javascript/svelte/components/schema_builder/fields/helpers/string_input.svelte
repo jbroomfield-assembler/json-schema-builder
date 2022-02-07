@@ -52,12 +52,14 @@
 
 <NumberInput
   label="Minimum length"
+  placeholder="Minimum length"
   min=0
   bind:value={schema.minLength}
 />
 
 <NumberInput
   label="Maximum length"
+  placeholder="Maximum length"
   min=1
   bind:value={schema.maxLength}
 />

@@ -73,35 +73,41 @@
 
 <NumberInput
   label="Default"
+  placeholder="Default"
   bind:value={schema.default}
 />
 
 <NumberInput
   label="Multiples of"
+  placeholder="Multiples of"
   min=1
   bind:value={schema.multipleOf}
 />
 
 <NumberInput
   label="Minimum"
+  placeholder="Minimum"
   bind:value={schema.minimum}
   on:change={() => schema.exlusiveMinimum = undefined}
 />
 
 <NumberInput
   label="Exclusive minimum"
+  placeholder="Exclusive minimum"
   bind:value={schema.exclusiveMinimum}
   on:change={() => schema.minimum = undefined}
 />
 
 <NumberInput
   label="Maximum"
+  placeholder="Maximum"
   bind:value={schema.maximum}
   on:change={() => schema.exlusiveMaximum = undefined}
 />
 
 <NumberInput
   label="Exclusive maximum"
+  placeholder="Exclusive maximum"
   bind:value={schema.exclusiveMaximum}
   on:change={() => schema.maximum = undefined}
 />

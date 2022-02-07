@@ -59,12 +59,14 @@
 
 <NumberInput
   label="Minimum number of items"
+  placeholder="Minimum number of items"
   bind:value={schema.minItems}
   min=0
 />
 
 <NumberInput
   label="Maximum number of items"
+  placeholder="Maximum number of items"
   bind:value={schema.maxItems}
   min=1
 />
