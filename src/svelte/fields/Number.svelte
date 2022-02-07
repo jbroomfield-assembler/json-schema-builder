@@ -1,6 +1,6 @@
 <script>
-  import NumberInputFields from "./helpers/NumberInput.svelte"
-  import SelectFields from "./helpers/Select.svelte"
+  import NumberInputFields from "./helpers/number_input.svelte"
+  import SelectFields from "./helpers/select.svelte"
 
   import Checkbox from "../forms/Checkbox.svelte"
   
