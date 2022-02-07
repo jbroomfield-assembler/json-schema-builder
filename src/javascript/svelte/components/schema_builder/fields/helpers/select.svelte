@@ -1,9 +1,9 @@
 <script>
   import { onMount, tick } from "svelte"
 
-  import FormSelect from "../../forms/select.svelte"
-  import TextInput from "../../forms/text-input.svelte"
-  import NumberInput from "../../forms/number_input.svelte"
+  import Dropdown from "../../../../../components/editor/form/dropdown.svelte"
+  import TextInput from "../../../../../components/editor/form/text.svelte"
+  import NumberInput from "../../../../../components/editor/form/number.svelte"
 
   export let schema;
   export let valid;
@@ -60,7 +60,7 @@
 
 </script>
 
-<FormSelect
+<Dropdown
   label="Default"
   options={defaultOptions}
   bind:value={schema.default}

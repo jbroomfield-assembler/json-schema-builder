@@ -1,5 +1,5 @@
 <script>
-  import Select from "../forms/select.svelte"
+  import Dropdown from "../../../../components/editor/form/dropdown.svelte"
 
   export let schema;
 
@@ -41,7 +41,7 @@ $: schema && setOptions()
 
 {:else}
 
-  <Select
+  <Dropdown
     label="Options"
     {options}
   />

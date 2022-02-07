@@ -1,6 +1,6 @@
 <script>
   import Checkbox from "../../../../components/editor/form/checkbox.svelte"
-  import NumberInput from "../forms/number_input.svelte"
+  import NumberInput from "../../../../components/editor/form/number.svelte"
 
   export let schema;
   export let valid;

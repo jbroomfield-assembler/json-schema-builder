@@ -1,6 +1,5 @@
 <script>
-  import Checkbox from "../../../../components/editor/form/checkbox.svelte"
-  import Select from "../forms/select.svelte"
+  import Dropdown from "../../../../components/editor/form/dropdown.svelte"
 
   export let schema;
 
@@ -19,7 +18,7 @@
   }
 </script>
 
-<Select
+<Dropdown
   label="Default"
   options={defaultOptions}
   on:change={handleChange}

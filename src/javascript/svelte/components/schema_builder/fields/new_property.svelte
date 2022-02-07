@@ -1,6 +1,6 @@
 <script>
-  import TextInput from "../forms/text-input.svelte"
-  import Select from "../forms/select.svelte"
+  import TextInput from "../../../../components/editor/form/text.svelte"
+  import Dropdown from "../../../../components/editor/form/dropdown.svelte"
   export let schema;
   export let valid;
 
@@ -45,8 +45,8 @@
   bind:value={schema.properties.code}
 />
 
-<Select
-  label="type"
+<Dropdown
+  label="Type"
   options={typeOptions}
   bind:value={schema.properties.type}
 />

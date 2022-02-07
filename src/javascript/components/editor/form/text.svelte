@@ -7,6 +7,7 @@
   export let placeholder = label;
   export let fieldOnly = false;
 
+  placeholder = 'hi'
   let _value = value;
   let id = `${label ? (label.toLowerCase() + '-') : ''}number-field`;
   let input;

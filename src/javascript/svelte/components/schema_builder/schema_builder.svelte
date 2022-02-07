@@ -1,6 +1,6 @@
 <script>
 
-	import newSchema from '../new_schema.js'
+	import newSchema from './new_schema.js'
 	
 	import Component from './component.svelte'
 	

@@ -1,9 +1,9 @@
 <script>
 
-  import newSchema from "../../new_schema.js"
-  import NumberInput from "../forms/number_input.svelte"
+  import newSchema from "../new_schema.js"
+  import NumberInput from "../../../../components/editor/form/number.svelte"
   import Checkbox from "../../../../components/editor/form/checkbox.svelte"
-  import Select from "../forms/select.svelte"
+  import Dropdown from "../../../../components/editor/form/dropdown.svelte"
 
   export let schema;
   export let valid;
@@ -50,7 +50,7 @@
 
 </script>
 
-<Select
+<Dropdown
   label="Item type"
   options={itemTypeOptions}
   value={schema?.items?.type}
