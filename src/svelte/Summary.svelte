@@ -1,9 +1,9 @@
 <script>
-  import StringSummary from "./summaries/String.svelte";
-  import NumberSummary from "./summaries/Number.svelte";
-  import BooleanSummary from "./summaries/Boolean.svelte";
-  import ArraySummary from "./summaries/Array.svelte";
-  import ObjectSummary from "./summaries/Object.svelte";
+  import StringSummary from "./summaries/string.svelte";
+  import NumberSummary from "./summaries/number.svelte";
+  import BooleanSummary from "./summaries/boolean.svelte";
+  import ArraySummary from "./summaries/array.svelte";
+  import ObjectSummary from "./summaries/object.svelte";
   import { createEventDispatcher } from 'svelte';
   export let schema;
   export let arrayItem = false;
