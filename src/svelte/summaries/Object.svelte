@@ -3,7 +3,7 @@
   import SchemaModal from "../schema_modal.svelte";
   import Fields from "../fields.svelte";
 
-  import newSchema from "../../newSchema.js"
+  import newSchema from "../../new_schema.js"
 
   export let schema = {};
   
