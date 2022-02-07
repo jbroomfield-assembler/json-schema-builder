@@ -1,5 +1,5 @@
 <script>
-	import SchemaBuilder from './schema_builder.svelte'
+	import SchemaBuilder from './javascript/svelte/components/schema_builder/schema_builder.svelte'
 </script>
 
 <main>
