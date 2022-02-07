@@ -1,5 +1,5 @@
 <script>
-  import Modal from "./shared/modal.svelte"
+  import Modal from "../../shared/modal.svelte"
   import Fields from "./fields.svelte"
 
   import Checkbox from "./forms/checkbox.svelte"
