@@ -2,7 +2,7 @@
   import StringInputFields from "./helpers/string_input.svelte"
   import SelectFields from "./helpers/select.svelte"
 
-  import Checkbox from "../forms/Checkbox.svelte"
+  import Checkbox from "../forms/checkbox.svelte"
 
   export let schema;
   export let valid;

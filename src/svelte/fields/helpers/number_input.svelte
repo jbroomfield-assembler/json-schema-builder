@@ -1,5 +1,5 @@
 <script>
-  import NumberInput from "../../forms/NumberInput.svelte";
+  import NumberInput from "../../forms/number_input.svelte";
   export let schema;
   export let valid;
 

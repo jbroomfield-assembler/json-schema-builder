@@ -2,7 +2,7 @@
   import Modal from "./shared/modal.svelte"
   import Fields from "./Fields.svelte"
 
-  import Checkbox from "./forms/Checkbox.svelte"
+  import Checkbox from "./forms/checkbox.svelte"
 
   import { createEventDispatcher } from "svelte"
   const dispatch = createEventDispatcher()

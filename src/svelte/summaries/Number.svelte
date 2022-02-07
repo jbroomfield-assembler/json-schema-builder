@@ -1,5 +1,5 @@
 <script>
-  import Select from "../forms/Select.svelte"
+  import Select from "../forms/select.svelte"
   
   export let schema;
 

@@ -1,6 +1,6 @@
 <script>
-  import TextInput from "../forms/TextInput.svelte"
-  import Select from "../forms/Select.svelte"
+  import TextInput from "../forms/text-input.svelte"
+  import Select from "../forms/select.svelte"
   export let schema;
   export let valid;
 
