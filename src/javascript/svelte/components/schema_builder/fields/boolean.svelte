@@ -1,5 +1,5 @@
 <script>
-  import Checkbox from "../forms/checkbox.svelte"
+  import Checkbox from "../../../../components/editor/form/checkbox.svelte"
   import Select from "../forms/select.svelte"
 
   export let schema;

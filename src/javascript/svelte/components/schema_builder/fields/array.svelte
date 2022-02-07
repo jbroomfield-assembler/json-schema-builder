@@ -2,7 +2,7 @@
 
   import newSchema from "../../new_schema.js"
   import NumberInput from "../forms/number_input.svelte"
-  import Checkbox from "../forms/checkbox.svelte"
+  import Checkbox from "../../../../components/editor/form/checkbox.svelte"
   import Select from "../forms/select.svelte"
 
   export let schema;
