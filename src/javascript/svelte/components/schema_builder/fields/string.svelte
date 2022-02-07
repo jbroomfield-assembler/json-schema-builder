@@ -2,33 +2,30 @@
   import StringInputFields from "./helpers/string_input.svelte"
   import SelectFields from "./helpers/select.svelte"
 
+  import Checkbox from "../../../../components/editor/form/checkbox.svelte"
+
   export let schema;
   export let valid;
 
   const handleDefineOptionsChange = event => {
-    if (event.target.checked) {
-      schema.enum ||= ["", "", "",]
+    delete schema.default
+    if (schema.enum) {
+      delete schema.enum
+      valid = true
+    } else {
+      schema.enum ||= [null, null, null]
       delete schema.default
       delete schema.maxLength
       delete schema.minLength
       valid = false
-    } else {
-      schema.enum = null
-      valid = true
     }
   }
 </script>
 
-<div class="form-control">
-  <label class="cursor-pointer label">
-    <span class="label-text">Define options</span> 
-    <input
-      type="checkbox"
-      class="checkbox"
-      on:change={handleDefineOptionsChange}
-    >
-  </label>
-</div>
+<Checkbox
+  label="Define options"
+  on:change={handleDefineOptionsChange}
+/>
 
 {#if (schema.enum == null)}
   <StringInputFields bind:schema bind:valid />
