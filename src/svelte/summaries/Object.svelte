@@ -11,7 +11,6 @@
   let modalSize = "small";
   let newPropertySchema = {};
   let newPropertySchemaValid = false;
-  let modalOpen = false;
   
   const openModal = () => {
     newPropertySchema = newSchema({type: 'new-property'})

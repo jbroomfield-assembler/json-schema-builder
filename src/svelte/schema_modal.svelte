@@ -8,7 +8,6 @@
   const dispatch = createEventDispatcher()
 
   export let schema = {};
-  // export let open;
   export let required = false;
   export let size = 'small'
 
@@ -51,7 +50,7 @@
     if (schema?.new && modal) {
       delete schema.new
       schema = schema
-      modal.open()
+      open()
     }
   }
 
