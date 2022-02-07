@@ -1,5 +1,5 @@
 <script>
-  import Component from "../Component.svelte"
+  import Component from "../component.svelte"
   export let schema;
 </script>
 

@@ -1,7 +1,7 @@
 <script>
 
-	import Summary from "./Summary.svelte";
-	import SchemaModal from "./SchemaModal.svelte";
+	import Summary from "./summary.svelte";
+	import SchemaModal from "./schema_modal.svelte";
 
 	import { createEventDispatcher } from "svelte";
 	const dispatch = createEventDispatcher();

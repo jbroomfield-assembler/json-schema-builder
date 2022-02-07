@@ -2,7 +2,7 @@
 
 	import newSchema from '../newSchema.js'
 	
-	import Component from './Component.svelte'
+	import Component from './component.svelte'
 	
 	let schema = newSchema({
 		type: 'data-model',

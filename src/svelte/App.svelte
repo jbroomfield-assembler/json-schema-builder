@@ -1,5 +1,5 @@
 <script>
-	import Builder from './Builder.svelte'
+	import Builder from './builder.svelte'
 </script>
 
 <main>

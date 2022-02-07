@@ -1,7 +1,7 @@
 <script>
-  import Component from "../Component.svelte";
-  import SchemaModal from "../SchemaModal.svelte";
-  import Fields from "../Fields.svelte";
+  import Component from "../component.svelte";
+  import SchemaModal from "../schema_modal.svelte";
+  import Fields from "../fields.svelte";
 
   import newSchema from "../../newSchema.js"
 
