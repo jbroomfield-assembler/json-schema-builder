@@ -75,7 +75,6 @@
           "number": NumberInput
         }[inputType]}
         placeholder="Option {i + 1}"
-        fieldOnly={true}
         bind:this={optionRefs[i]}
         bind:value={schema.enum[i]}
       />

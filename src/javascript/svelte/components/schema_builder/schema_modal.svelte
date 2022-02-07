@@ -2,6 +2,7 @@
   import Modal from "../../shared/modal.svelte"
   import Fields from "./fields.svelte"
 
+  import TextInput from "../../../components/editor/form/text.svelte"
   import Checkbox from "../../../components/editor/form/checkbox.svelte"
 
   import { createEventDispatcher } from "svelte"
@@ -61,18 +62,12 @@
     <h1>{schema.title}</h1>
     <p>Type: {displayType}</p>
     <p>Code: {schema.code}</p>
-    <div class="form-control">
-      <label for="description" class="label">
-        <span class="label-text">Description</span>
-      </label> 
-      <input
-        id="description"
-        type="text"
-        placeholder="Description"
-        class="input input-bordered w-full"
-        bind:value={schema.description}
-      >
-    </div>
+
+    <TextInput
+      label="Description"
+      placeholder="Description"
+      bind:value={schema.description}
+    />
 
     {#if required != null}
       <Checkbox

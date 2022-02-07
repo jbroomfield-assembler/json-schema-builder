@@ -46,6 +46,7 @@
 
 <TextInput
   label="Default"
+  placeholder="Default"
   bind:value={schema.default}
 />
 
@@ -63,5 +64,6 @@
 
 <TextInput
   label="Pattern"
+  placeholder="Pattern"
   bind:value={schema.pattern}
 />

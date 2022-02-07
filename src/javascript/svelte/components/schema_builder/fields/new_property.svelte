@@ -37,11 +37,13 @@
 
 <TextInput
   label="Label"
+  placeholder="Label"
   bind:value={schema.properties.title}
 />
 
 <TextInput
   label="Code"
+  placeholder="Code"
   bind:value={schema.properties.code}
 />
 
