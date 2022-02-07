@@ -10,9 +10,9 @@
 	export let arrayItem = false;
 	export let required = null;
 	
-	let modalOpen = false
+	let modal;
 
-	const openModal = () => modalOpen = true
+	const openModal = () => modal?.open()
 
 	$: dispatch("setRequired", { required })
 
@@ -20,4 +20,4 @@
 
 <Summary bind:schema {arrayItem} on:edit={openModal} on:deleteProperty {required} />
 
-<SchemaModal bind:schema bind:open={modalOpen} bind:required />
+<SchemaModal bind:this={modal} bind:schema bind:required />
