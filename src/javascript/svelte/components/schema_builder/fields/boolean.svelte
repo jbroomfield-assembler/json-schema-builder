@@ -20,6 +20,6 @@
 
 <Dropdown
   label="Default"
-  options={defaultOptions}
+  items={defaultOptions}
   on:change={handleChange}
 />

@@ -1381,6 +1381,11 @@
     "detect-indent" "^6.0.0"
     "strip-indent" "^3.0.0"
 
+"svelte-select@^4.4.7":
+  "integrity" "sha512-fIf9Z8rPI6F8naHZ9wjXT0Pv5gLyhdHAFkHFJnCfVVfELE8e82uOoF0xEVQP6Kir+b4Q5yOvNAzZ61WbSU6A0A=="
+  "resolved" "https://registry.npmjs.org/svelte-select/-/svelte-select-4.4.7.tgz"
+  "version" "4.4.7"
+
 "svelte@^3.0.0", "svelte@^3.23.0", "svelte@>=3.5.0":
   "integrity" "sha512-TxZGrXzX2ggFH3BIKY5fmbeMdJuZrMIMDYPMX6R9255bueuYIuVaBQSLUeY2oD7W4IdeqRZiAVGCjDw2POKBRA=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.31.2.tgz"

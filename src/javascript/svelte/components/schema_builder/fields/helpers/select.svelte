@@ -62,7 +62,7 @@
 
 <Dropdown
   label="Default"
-  options={defaultOptions}
+  items={defaultOptions}
   bind:value={schema.default}
 />
 

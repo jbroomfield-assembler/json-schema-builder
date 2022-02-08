@@ -53,7 +53,7 @@
 
   <Dropdown
     label="Options"
-    {options}
+    items={options}
   />
 
 {/if}

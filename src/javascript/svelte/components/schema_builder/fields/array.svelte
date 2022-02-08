@@ -10,13 +10,13 @@
 
   const itemTypeOptions = [
     {disabled: "disabled", label: "Item type"},
-    "Text",
-    "Number",
-    "Boolean",
-    "Array",
-    "Object",
-    "Date",
-    "Email",
+    {label: "Text", value: "text"},
+    {label: "Number", value: "number"},
+    {label: "Boolean", value: "boolean"},
+    {label: "Array", value: "array"},
+    {label: "Object", value: "object"},
+    {label: "Date", value: "date"},
+    {label: "Email", value: "email"},
   ]
 
   const schemaValid = () => {
@@ -39,10 +39,15 @@
   }
 
   const newItemSchema = event => {
-    schema.items = newSchema({
-      type: event.detail.value,
-      id: `${schema["$id"]}/items`
-    })
+    const type = event.detail.itemType
+    if (type) {
+      schema.items = newSchema({
+        type,
+        id: `${schema["$id"]}/items`
+      })
+    } else {
+      schema.items = {}
+    }
     validateSchema()
   }
 
@@ -52,8 +57,9 @@
 
 <Dropdown
   label="Item type"
-  options={itemTypeOptions}
-  value={schema?.items?.type}
+  key="itemType"
+  items={itemTypeOptions}
+  value={schema.items.type}
   on:change={newItemSchema}
 />
 

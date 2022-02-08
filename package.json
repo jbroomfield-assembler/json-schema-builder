@@ -24,6 +24,7 @@
     "materialize-css": "^1.0.0-rc.2",
     "postcss": "^7",
     "sirv-cli": "^1.0.0",
+    "svelte-select": "^4.4.7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }

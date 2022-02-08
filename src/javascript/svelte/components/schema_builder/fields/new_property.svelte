@@ -23,13 +23,13 @@
       value: "",
       label: "Type",
     },
-    "Text",
-    "Number",
-    "Boolean",
-    "Array",
-    "Object",
-    "Date",
-    "Email",
+    {label: "Text", value: "text"},
+    {label: "Number", value: "number"},
+    {label: "Boolean", value: "boolean"},
+    {label: "Array", value: "array"},
+    {label: "Object", value: "object"},
+    {label: "Date", value: "date"},
+    {label: "Email", value: "email"},
   ]
 </script>
 
@@ -49,6 +49,6 @@
 
 <Dropdown
   label="Type"
-  options={typeOptions}
+  items={typeOptions}
   bind:value={schema.properties.type}
 />

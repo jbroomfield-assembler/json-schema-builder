@@ -43,7 +43,7 @@ $: schema && setOptions()
 
   <Dropdown
     label="Options"
-    {options}
+    items={options}
   />
 
 {/if}
