@@ -1,6 +1,6 @@
 <script>
 
-  import newSchema from "../new_schema.js"
+  import newSchema from "../helpers/new_schema.js"
   import NumberInput from "../../../../components/editor/form/number.svelte"
   import Checkbox from "../../../../components/editor/form/checkbox.svelte"
   import Dropdown from "../../../../components/editor/form/dropdown.svelte"

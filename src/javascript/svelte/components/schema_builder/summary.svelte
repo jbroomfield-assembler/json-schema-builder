@@ -4,7 +4,11 @@
   import BooleanSummary from "./summaries/boolean.svelte";
   import ArraySummary from "./summaries/array.svelte";
   import ObjectSummary from "./summaries/object.svelte";
+
   import { createEventDispatcher } from 'svelte';
+
+  import getTypeDisplay from "./helpers/getTypeDisplay";
+
   export let schema;
   export let arrayItem = false;
   export let required = null;
@@ -30,19 +34,14 @@
     }[schema.type]
   }
 
-  let displayType
-  if (schema.type === 'string') {
-    displayType = schema.format || 'text'
-  } else {
-    displayType = schema.type
-  }
+  const typeDisplay = getTypeDisplay(schema)
 
 </script>
 
 <div class="my-2 p-4 card bg-base-200 card-bordered border-black">
   <div class="card-body">
 
-    <h2 class="card-title">{schema.title} ({displayType})</h2>
+    <h2 class="card-title">{schema.title} ({typeDisplay})</h2>
 
     {#if (schema.code)}
       <p>Code: {schema.code}</p>

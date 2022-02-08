@@ -5,7 +5,10 @@
   import TextInput from "../../../components/editor/form/text.svelte"
   import Checkbox from "../../../components/editor/form/checkbox.svelte"
 
+  import getTypeDisplay from "./helpers/getTypeDisplay";
+
   import { createEventDispatcher } from "svelte"
+  
   const dispatch = createEventDispatcher()
 
   export let schema = {};
@@ -40,12 +43,8 @@
     dispatch("cancel")
   }
 
-  let displayType
-  if (schema.type === 'string') {
-    displayType = schema.format || 'text'
-  } else {
-    displayType = schema.type
-  }
+  
+  const typeDisplay = getTypeDisplay(schema)
 
   $: {
     if (schema?.new && modal) {
@@ -60,7 +59,7 @@
 <Modal bind:this={modal} {size}>
   {#if schema.type != "new-property"}
     <h1>{schema.title}</h1>
-    <p>Type: {displayType}</p>
+    <p>Type: {typeDisplay}</p>
     <p>Code: {schema.code}</p>
 
     <TextInput
