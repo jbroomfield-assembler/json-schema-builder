@@ -5,7 +5,7 @@
   import TextInput from "../../../components/editor/form/text.svelte"
   import Checkbox from "../../../components/editor/form/checkbox.svelte"
 
-  import getTypeDisplay from "./helpers/getTypeDisplay";
+  import getTypeDisplay from "./helpers/get_type_display.js";
 
   import { createEventDispatcher } from "svelte"
   

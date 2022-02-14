@@ -7,7 +7,7 @@
 
   import { createEventDispatcher } from 'svelte';
 
-  import getTypeDisplay from "./helpers/getTypeDisplay";
+  import getTypeDisplay from "./helpers/get_type_display.js";
 
   export let schema;
   export let arrayItem = false;
