@@ -11,6 +11,7 @@ const exclusiveKeywords = {
     additionalProperties: false,
     required: [],
     dependentRequired: {},
+    default: {},
   },
   boolean: {
   }
